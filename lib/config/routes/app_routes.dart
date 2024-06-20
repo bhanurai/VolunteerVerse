@@ -1,3 +1,4 @@
+import 'package:volunteer_verse/features/home/home_page.dart';
 import 'package:volunteer_verse/features/splash/loading_page.dart';
 
 class AppRoute {
@@ -8,6 +9,7 @@ class AppRoute {
 
   static getApplicationRoute() {
     return {
+      dashboardRoute: (context) => HomePage(),
       loadingScreenRoute: (context) => const SplashScreen(),
 
       
