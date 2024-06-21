@@ -32,7 +32,8 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: const Icon(Icons.notifications, color: Colors.white),
+                      icon:
+                          const Icon(Icons.notifications, color: Colors.white),
                       onPressed: () {},
                     ),
                     IconButton(
@@ -189,10 +190,10 @@ class _DonationCardState extends State<DonationCard> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.network(
-            'https://via.placeholder.com/150',
+          Image.asset(
+            'assets/images/me.jpg',
             width: double.infinity,
-            height: 150,
+            height: 180,
             fit: BoxFit.cover,
           ),
           const Padding(
