@@ -68,6 +68,34 @@ class HomeContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScrollView(
       slivers: [
+        SliverPersistentHeader(
+          delegate: _SliverAppBarDelegate(
+            minHeight: 56.0,
+            maxHeight: 56.0,
+            child: Container(
+              color: const Color.fromRGBO(97, 124, 181, 1),
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: 35.0, left: 3.0, right: 8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.menu, color: Colors.white),
+                      onPressed: () {},
+                    ),
+                    IconButton(
+                      icon:
+                          const Icon(Icons.notifications, color: Colors.white),
+                      onPressed: () {},
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          pinned: true,
+        ),
         SliverAppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
@@ -76,25 +104,11 @@ class HomeContent extends StatelessWidget {
           flexibleSpace: FlexibleSpaceBar(
             background: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.notifications,
-                            color: Colors.white),
-                        onPressed: () {},
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.menu, color: Colors.white),
-                        onPressed: () {},
-                      ),
-                    ],
-                  ),
+                SizedBox(
+                  height: 15,
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: EdgeInsets.all(18.0),
                   child: Align(
                     alignment: Alignment.topLeft,
                     child: Text(
@@ -107,7 +121,9 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                 ),
-                const Spacer(),
+                const SizedBox(
+                  height: 20,
+                ),
                 const Text(
                   '"Serve . Connect . Impact"',
                   style: TextStyle(
@@ -120,8 +136,7 @@ class HomeContent extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
-                    margin: const EdgeInsets.only(
-                        bottom: 16.0), 
+                    margin: const EdgeInsets.only(bottom: 16.0),
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Search Organizations...',
@@ -313,5 +328,35 @@ class _EventCardState extends State<EventCard> {
         ],
       ),
     );
+  }
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  final double minHeight;
+  final double maxHeight;
+  final Widget child;
+
+  _SliverAppBarDelegate({
+    required this.minHeight,
+    required this.maxHeight,
+    required this.child,
+  });
+
+  @override
+  double get minExtent => minHeight;
+  @override
+  double get maxExtent => maxHeight;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return SizedBox.expand(child: child);
+  }
+
+  @override
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }
