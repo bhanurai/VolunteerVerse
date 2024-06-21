@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/global/global_page.dart';
+import 'package:volunteer_verse/features/profile/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -9,8 +11,17 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
+  final PageController _pageController = PageController();
 
   void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _pageController.animateToPage(index,
+          duration: const Duration(milliseconds: 300), curve: Curves.ease);
+    });
+  }
+
+  void _onPageChanged(int index) {
     setState(() {
       _selectedIndex = index;
     });
@@ -19,111 +30,14 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(300.0),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
-          flexibleSpace: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon:
-                          const Icon(Icons.notifications, color: Colors.white),
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.menu, color: Colors.white),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Align(
-                  alignment: Alignment.topLeft,
-                  child: Text(
-                    'Hello, Ram',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
-              const Spacer(),
-              const Text(
-                '"Serve . Connect . Impact"',
-                style: TextStyle(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const Spacer(),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Container(
-                  margin: const EdgeInsets.only(
-                      bottom: 16.0), // Aligns with bottom of AppBar
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search Organizations...',
-                      prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      fillColor: Colors.white,
-                      filled: true,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-      body: const SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Category',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CategoryButton(icon: Icons.house, label: 'Shelter'),
-                  CategoryButton(icon: Icons.book, label: 'Education'),
-                  CategoryButton(icon: Icons.local_offer, label: 'Clothes'),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Text(
-                'Donation',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: DonationCard(),
-            ),
-          ],
-        ),
+      body: PageView(
+        controller: _pageController,
+        onPageChanged: _onPageChanged,
+        children: [
+          HomeContent(),
+          GlobalPage(),
+          ProfilePage(),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [
@@ -145,6 +59,134 @@ class _HomePageState extends State<HomePage> {
         unselectedItemColor: Colors.grey,
         onTap: _onItemTapped,
       ),
+    );
+  }
+}
+
+class HomeContent extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
+          expandedHeight: 280.0,
+          pinned: true,
+          flexibleSpace: FlexibleSpaceBar(
+            background: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.notifications,
+                            color: Colors.white),
+                        onPressed: () {},
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.menu, color: Colors.white),
+                        onPressed: () {},
+                      ),
+                    ],
+                  ),
+                ),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Align(
+                    alignment: Alignment.topLeft,
+                    child: Text(
+                      'Hello, Ram',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const Spacer(),
+                const Text(
+                  '"Serve . Connect . Impact"',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const Spacer(),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Container(
+                    margin: const EdgeInsets.only(
+                        bottom: 16.0), 
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search Organizations...',
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        SliverToBoxAdapter(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Category',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    CategoryButton(icon: Icons.house, label: 'Shelter'),
+                    CategoryButton(icon: Icons.book, label: 'Education'),
+                    CategoryButton(icon: Icons.local_offer, label: 'Clothes'),
+                  ],
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Donation',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: DonationCard(),
+              ),
+              const Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text(
+                  'Upcoming Events',
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: EventCard(),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
@@ -222,6 +264,51 @@ class _DonationCardState extends State<DonationCard> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Text('${(donationProgress * 100).toStringAsFixed(0)}%'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class EventCard extends StatefulWidget {
+  const EventCard({super.key});
+
+  @override
+  _EventCardState createState() => _EventCardState();
+}
+
+class _EventCardState extends State<EventCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Image.asset(
+            'assets/images/me.jpg',
+            width: double.infinity,
+            height: 180,
+            fit: BoxFit.cover,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'Join our upcoming event',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Text('By John Doe'),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: Text('Date: 25th December, 2024'),
+          ),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: Text('Location: Central Park'),
           ),
         ],
       ),
