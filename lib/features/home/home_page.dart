@@ -122,17 +122,23 @@ class HomeContent extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 15,
                 ),
-                const Text(
-                  '"Serve . Connect . Impact"',
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      '"Serve.Connect.Impact"',
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
-                const Spacer(),
+                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Container(
