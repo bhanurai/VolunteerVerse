@@ -224,7 +224,7 @@ class OpportunityCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(16.0),
+          borderRadius: BorderRadius.circular(33.0),
           child: Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
