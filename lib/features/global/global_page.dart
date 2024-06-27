@@ -18,10 +18,8 @@ class _GlobalPageState extends State<GlobalPage> {
               child: Container(
                 color: const Color.fromRGBO(97, 124, 181, 1),
                 child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 50.0,
-                      left: 3.0,
-                      right: 8.0), // Adjusted top padding here
+                  padding:
+                      const EdgeInsets.only(top: 50.0, left: 3.0, right: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -98,6 +96,20 @@ class _GlobalPageState extends State<GlobalPage> {
                           title: 'Babylife Home',
                           description:
                               'Baby Life Home is an organization dedicated to providing care for orphaned and abandoned children in Nepal.',
+                        ),
+                        SizedBox(width: 8.0),
+                        OrganizationCard(
+                          logo: Icons.business,
+                          title: 'Prayas Nepal',
+                          description:
+                              'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
+                        ),
+                        SizedBox(width: 8.0),
+                        OrganizationCard(
+                          logo: Icons.business,
+                          title: 'Prayas Nepal',
+                          description:
+                              'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
                         ),
                       ],
                     ),
@@ -211,27 +223,30 @@ class OpportunityCard extends StatelessWidget {
       width: double.infinity,
       child: Padding(
         padding: const EdgeInsets.all(6.0),
-        child: Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                width: double.infinity,
-                height: 200,
-                child: Image.asset(imagePath, fit: BoxFit.cover),
-              ),
-              Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(description),
-                    SizedBox(height: 8.0),
-                    Text(eventDate, style: TextStyle(color: Colors.grey)),
-                  ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(16.0),
+          child: Card(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 200,
+                  child: Image.asset(imagePath, fit: BoxFit.cover),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(description),
+                      SizedBox(height: 8.0),
+                      Text(eventDate, style: TextStyle(color: Colors.blueGrey)),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
