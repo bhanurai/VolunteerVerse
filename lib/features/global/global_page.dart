@@ -209,23 +209,30 @@ class OpportunityCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      child: Card(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(imagePath),
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(description),
-                  SizedBox(height: 8.0),
-                  Text(eventDate, style: TextStyle(color: Colors.grey)),
-                ],
+      child: Padding(
+        padding: const EdgeInsets.all(6.0),
+        child: Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: Image.asset(imagePath, fit: BoxFit.cover),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(description),
+                    SizedBox(height: 8.0),
+                    Text(eventDate, style: TextStyle(color: Colors.grey)),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
