@@ -45,12 +45,12 @@ class _HomeContentState extends State<HomeContent> {
         SliverAppBar(
           automaticallyImplyLeading: false,
           backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
-          expandedHeight: 260.0,
+          expandedHeight: 215.0,
           pinned: true,
           flexibleSpace: FlexibleSpaceBar(
             background: Column(
               children: [
-                const SizedBox(height: 25),
+                const SizedBox(height: 20),
                 const Padding(
                   padding: EdgeInsets.all(18.0),
                   child: Align(
@@ -58,7 +58,22 @@ class _HomeContentState extends State<HomeContent> {
                     child: Text(
                       'Hello, Ram',
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                const Padding(
+                  padding: EdgeInsets.all(18.0),
+                  child: Align(
+                    alignment: Alignment.topCenter,
+                    child: Text(
+                      '"Serve . Connect . Impact"',
+                      style: TextStyle(
+                        fontSize: 20,
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -66,38 +81,27 @@ class _HomeContentState extends State<HomeContent> {
                   ),
                 ),
                 const SizedBox(height: 10),
-                const Padding(
-                  padding: EdgeInsets.all(18.0),
-                  child: Align(
-                    alignment: Alignment.topCenter,
-                    child: Text(
-                      '"Serve.Connect.Impact"',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 15),
                 Padding(
-                  padding: const EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    margin: const EdgeInsets.only(bottom: 16.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Search Organizations...',
-                        prefixIcon: const Icon(Icons.search),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: SizedBox(
+                      width: 350,
+                      height: 60,
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search Organizations...',
+                          prefixIcon: const Icon(Icons.search),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          fillColor: Colors.white,
+                          filled: true,
                         ),
-                        fillColor: Colors.white,
-                        filled: true,
                       ),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),

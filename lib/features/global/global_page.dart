@@ -51,15 +51,19 @@ class _GlobalPageState extends State<GlobalPage> {
                 padding: const EdgeInsets.fromLTRB(16.0, 70.0, 16.0, 16.0),
                 child: Container(
                   margin: const EdgeInsets.only(bottom: 25.0),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      hintText: 'Search Organizations...',
-                      prefixIcon: const Icon(Icons.search),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                  child: SizedBox(
+                    width: 450,
+                    height: 60,
+                    child: TextField(
+                      decoration: InputDecoration(
+                        hintText: 'Search Organizations...',
+                        prefixIcon: const Icon(Icons.search),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        fillColor: Colors.white,
+                        filled: true,
                       ),
-                      fillColor: Colors.white,
-                      filled: true,
                     ),
                   ),
                 ),

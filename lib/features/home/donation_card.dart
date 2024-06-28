@@ -17,7 +17,7 @@ class _DonationCardState extends State<DonationCard> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Image.asset(
-            'assets/images/me.jpg',
+            'assets/images/learn.jpg',
             width: double.infinity,
             height: 180,
             fit: BoxFit.cover,
@@ -25,7 +25,7 @@ class _DonationCardState extends State<DonationCard> {
           const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text(
-              'Help someone to build their dream',
+              'Help them to learn in better environment',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
