@@ -53,7 +53,6 @@ class _GlobalPageState extends State<GlobalPage> {
                   margin: const EdgeInsets.only(bottom: 25.0),
                   child: SizedBox(
                     width: 450,
-                    height: 60,
                     child: TextField(
                       decoration: InputDecoration(
                         hintText: 'Search Organizations...',
@@ -228,7 +227,7 @@ class OpportunityCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(33.0),
+          borderRadius: BorderRadius.circular(20.0),
           child: Card(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
