@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:khalti_flutter/khalti_flutter.dart';
-import 'package:khalti_flutter/localization/khalti_localizations.dart';
+// import 'package:khalti_flutter/localization/khalti_localizations.dart';
 import 'package:volunteer_verse/config/routes/app_routes.dart';
 
 class MyApp extends StatefulWidget {

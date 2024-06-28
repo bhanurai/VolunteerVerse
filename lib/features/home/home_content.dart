@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:volunteer_verse/features/home/category_button.dart';
 import 'package:volunteer_verse/features/home/donation_card.dart';
+import 'category_section.dart'; // Import the new category section
 
-class HomeContent extends StatelessWidget {
+class HomeContent extends StatefulWidget {
   const HomeContent({super.key});
 
+  @override
+  _HomeContentState createState() => _HomeContentState();
+}
+
+class _HomeContentState extends State<HomeContent> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
@@ -16,7 +21,8 @@ class HomeContent extends StatelessWidget {
             child: Container(
               color: const Color.fromRGBO(97, 124, 181, 1),
               child: Padding(
-                padding: const EdgeInsets.only(top: 35.0, left: 3.0, right: 8.0),
+                padding:
+                    const EdgeInsets.only(top: 35.0, left: 3.0, right: 8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -25,7 +31,8 @@ class HomeContent extends StatelessWidget {
                       onPressed: () {},
                     ),
                     IconButton(
-                      icon: const Icon(Icons.notifications, color: Colors.white),
+                      icon:
+                          const Icon(Icons.notifications, color: Colors.white),
                       onPressed: () {},
                     ),
                   ],
@@ -99,24 +106,7 @@ class HomeContent extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text(
-                  'Category',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CategoryButton(icon: Icons.house, label: 'Shelter'),
-                    CategoryButton(icon: Icons.book, label: 'Education'),
-                    CategoryButton(icon: Icons.local_offer, label: 'Clothes'),
-                  ],
-                ),
-              ),
+              const CategorySection(), // Use the new CategorySection widget here
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
@@ -153,7 +143,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   double get maxExtent => maxHeight;
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return SizedBox.expand(child: child);
   }
 
