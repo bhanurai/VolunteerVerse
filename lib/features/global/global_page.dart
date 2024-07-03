@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/global/discover_opportunities/event1.dart';
+import 'package:volunteer_verse/features/global/discover_opportunities/event_page.dart';
+import 'package:volunteer_verse/features/global/featured_organization/detail_page.dart';
 
 class GlobalPage extends StatefulWidget {
   @override
@@ -87,32 +90,38 @@ class _GlobalPageState extends State<GlobalPage> {
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        OrganizationCard(
-                          logo: Icons.business,
-                          title: 'Prayas Nepal',
-                          description:
-                              'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PrayasNepalPage(),
+                              ),
+                            );
+                          },
+                          child: OrganizationCard(
+                            logo: Icons.business,
+                            title: 'Prayas Nepal',
+                            description:
+                                'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
+                          ),
                         ),
                         SizedBox(width: 8.0),
-                        OrganizationCard(
-                          logo: Icons.home,
-                          title: 'Babylife Home',
-                          description:
-                              'Baby Life Home is an organization dedicated to providing care for orphaned and abandoned children in Nepal.',
-                        ),
-                        SizedBox(width: 8.0),
-                        OrganizationCard(
-                          logo: Icons.business,
-                          title: 'Prayas Nepal',
-                          description:
-                              'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
-                        ),
-                        SizedBox(width: 8.0),
-                        OrganizationCard(
-                          logo: Icons.business,
-                          title: 'Prayas Nepal',
-                          description:
-                              'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BabylifeHomePage(),
+                              ),
+                            );
+                          },
+                          child: OrganizationCard(
+                            logo: Icons.home,
+                            title: 'Babylife Home',
+                            description:
+                                'Baby Life Home is an organization dedicated to providing care for orphaned and abandoned children in Nepal.',
+                          ),
                         ),
                       ],
                     ),
@@ -126,16 +135,36 @@ class _GlobalPageState extends State<GlobalPage> {
                     ),
                   ),
                   SizedBox(height: 8.0),
-                  OpportunityCard(
-                    imagePath: 'assets/images/logo.png',
-                    description:
-                        'Team up with a group and help pick up trash at Bagmati river.',
-                    eventDate: 'Event on Wed May 28',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => BagmatiCleanupApp(),
+                        ),
+                      );
+                    },
+                    child: OpportunityCard(
+                      imagePath: 'assets/images/logo.png',
+                      description:
+                          'Team up with a group and help pick up trash at Bagmati river.',
+                      eventDate: 'Event on Wed May 28',
+                    ),
                   ),
-                  OpportunityCard(
-                    imagePath: 'assets/images/logo.png',
-                    description: 'Team up with a group and ...',
-                    eventDate: 'Event on Wed May 28',
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TudhikhelCleanupApp(),
+                        ),
+                      );
+                    },
+                    child: OpportunityCard(
+                      imagePath: 'assets/images/logo.png',
+                      description: 'Team up with a group and ...',
+                      eventDate: 'Event on Wed May 28',
+                    ),
                   ),
                 ],
               ),
@@ -192,7 +221,7 @@ class OrganizationCard extends StatelessWidget {
                   children: isTruncated
                       ? [
                           TextSpan(
-                            text: 'read more',
+                            text: ' read more',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               decoration: TextDecoration.underline,
