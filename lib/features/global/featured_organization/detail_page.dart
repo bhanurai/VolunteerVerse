@@ -39,7 +39,13 @@ class PrayasNepalApp extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset('assets/images/prayas.png'),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/prayas.png',
+                          width: 150,
+                          height: 150,
+                        ),
+                      ),
                       SizedBox(height: 16.0),
                       Text(
                         'Prayatnashil Community Development Society (PRAYAS-Nepal) is a non-governmental organization dedicated towards quality education, livelihood, prosperous health, good-governance, inclusive and well-being of poor and marginalized Nepalese people. Prayas or PRAYAS-Nepal focuses on children, women, marginalized and rural communities people by setting holistic development goals in creating transformed and interdependent society.\n\n'
@@ -84,7 +90,9 @@ class BabylifeHomePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         decoration: TextDecoration.none),
-                    child: Text('Baby Life Home'),
+                    child: Text(
+                      'Baby Life Home',
+                    ),
                   ),
                 ],
               ),
@@ -97,7 +105,13 @@ class BabylifeHomePage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset('assets/images/baby.jpg'),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/baby.jpg',
+                          width: 150,
+                          height: 150,
+                        ),
+                      ),
                       SizedBox(height: 16.0),
                       Text(
                         'Prayatnashil Community Development Society (PRAYAS-Nepal) is a non-governmental organization dedicated towards quality education, livelihood, prosperous health, good-governance, inclusive and well-being of poor and marginalized Nepalese people. Prayas or PRAYAS-Nepal focuses on children, women, marginalized and rural communities people by setting holistic development goals in creating transformed and interdependent society.\n\n'
@@ -155,7 +169,13 @@ class MaitiNepal extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset('assets/images/maiti.jpg'),
+                      Center(
+                        child: Image.asset(
+                          'assets/images/maiti.jpg',
+                          width: 200,
+                          height: 150,
+                        ),
+                      ),
                       SizedBox(height: 16.0),
                       Text(
                         'Prayatnashil Community Development Society (PRAYAS-Nepal) is a non-governmental organization dedicated towards quality education, livelihood, prosperous health, good-governance, inclusive and well-being of poor and marginalized Nepalese people. Prayas or PRAYAS-Nepal focuses on children, women, marginalized and rural communities people by setting holistic development goals in creating transformed and interdependent society.\n\n'
