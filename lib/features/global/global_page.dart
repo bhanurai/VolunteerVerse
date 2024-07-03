@@ -95,7 +95,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PrayasNepalPage(),
+                                builder: (context) => PrayasNepalApp(),
                               ),
                             );
                           },
@@ -121,6 +121,23 @@ class _GlobalPageState extends State<GlobalPage> {
                             title: 'Babylife Home',
                             description:
                                 'Baby Life Home is an organization dedicated to providing care for orphaned and abandoned children in Nepal.',
+                          ),
+                        ),
+                        SizedBox(width: 8.0),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => MaitiNepal(),
+                              ),
+                            );
+                          },
+                          child: OrganizationCard(
+                            logo: Icons.home,
+                            title: 'Maiti Nepal',
+                            description:
+                                'Maiti Nepal was born out of a crusade to protect Nepali girls and women from crimes like domestic violence, trafficking for flesh trade, child prostitution, child labor and various forms of abuse, exploitation and torture.',
                           ),
                         ),
                       ],

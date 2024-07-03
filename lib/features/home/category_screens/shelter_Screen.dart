@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/home/donation_card.dart';
 
 class ShelterScreen extends StatelessWidget {
   const ShelterScreen({super.key});
@@ -10,10 +11,18 @@ class ShelterScreen extends StatelessWidget {
         backgroundColor: Color.fromRGBO(97, 124, 181, 1),
         title: const Text('Shelter'),
       ),
-      body: const Center(
-        child: Text(
-          'Details about Shelter',
-          style: TextStyle(fontSize: 24),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const DonationCard()),
+            );
+          },
+          child: const Text(
+            'Go to Details',
+            style: TextStyle(fontSize: 24),
+          ),
         ),
       ),
     );
