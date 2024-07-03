@@ -25,7 +25,7 @@ class CleanupPage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         children: <Widget>[
           Image.asset(
-            'assets/images/logo.png',
+            'assets/images/tudikhel.png',
             height: 200,
             fit: BoxFit.cover,
           ),
@@ -64,7 +64,7 @@ class CleanupPage extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Image.network(
-            'https://example.com/map_image.jpg', // Replace with your map image URL
+            'https://example.com/map_image.jpg', 
             height: 200,
             fit: BoxFit.cover,
           ),

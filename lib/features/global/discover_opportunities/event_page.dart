@@ -25,7 +25,7 @@ class CleanupPage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         children: <Widget>[
           Image.asset(
-            'assets/images/me.jpg', // Replace with your image URL
+            'assets/images/bagmati.jpg', 
             height: 200,
             fit: BoxFit.cover,
           ),

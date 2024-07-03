@@ -100,7 +100,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             );
                           },
                           child: OrganizationCard(
-                            logo: Icons.business,
+                            imagePath: 'assets/images/prayas.png',
                             title: 'Prayas Nepal',
                             description:
                                 'PRAYAS-Nepal envisions a new Nepal by positive transformation of socio-economic aspect of society and individual through capacity enhancement and optimum utilization of local resources.',
@@ -117,7 +117,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             );
                           },
                           child: OrganizationCard(
-                            logo: Icons.home,
+                            imagePath: 'assets/images/baby.jpg',
                             title: 'Babylife Home',
                             description:
                                 'Baby Life Home is an organization dedicated to providing care for orphaned and abandoned children in Nepal.',
@@ -134,7 +134,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             );
                           },
                           child: OrganizationCard(
-                            logo: Icons.home,
+                            imagePath: 'assets/images/maiti.jpg',
                             title: 'Maiti Nepal',
                             description:
                                 'Maiti Nepal was born out of a crusade to protect Nepali girls and women from crimes like domestic violence, trafficking for flesh trade, child prostitution, child labor and various forms of abuse, exploitation and torture.',
@@ -152,35 +152,42 @@ class _GlobalPageState extends State<GlobalPage> {
                     ),
                   ),
                   SizedBox(height: 8.0),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => BagmatiCleanupApp(),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => BagmatiCleanupApp(),
+                              ),
+                            );
+                          },
+                          child: OpportunityCard(
+                            imagePath: 'assets/images/bagmati.jpg',
+                            description:
+                                'Team up with a group and help pick up trash at Bagmati river.',
+                            eventDate: 'Event on Wed May 28',
+                          ),
                         ),
-                      );
-                    },
-                    child: OpportunityCard(
-                      imagePath: 'assets/images/logo.png',
-                      description:
-                          'Team up with a group and help pick up trash at Bagmati river.',
-                      eventDate: 'Event on Wed May 28',
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => TudhikhelCleanupApp(),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => TudhikhelCleanupApp(),
+                              ),
+                            );
+                          },
+                          child: OpportunityCard(
+                            imagePath: 'assets/images/tudikhel.png',
+                            description: 'Team up with a group and ...',
+                            eventDate: 'Event on Wed May 28',
+                          ),
                         ),
-                      );
-                    },
-                    child: OpportunityCard(
-                      imagePath: 'assets/images/logo.png',
-                      description: 'Team up with a group and ...',
-                      eventDate: 'Event on Wed May 28',
+                      ],
                     ),
                   ),
                 ],
@@ -194,12 +201,14 @@ class _GlobalPageState extends State<GlobalPage> {
 }
 
 class OrganizationCard extends StatelessWidget {
-  final IconData logo;
+  final String imagePath;
   final String title;
   final String description;
 
   OrganizationCard(
-      {required this.logo, required this.title, required this.description});
+      {required this.imagePath,
+      required this.title,
+      required this.description});
 
   @override
   Widget build(BuildContext context) {
@@ -219,7 +228,7 @@ class OrganizationCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CircleAvatar(
-                child: Icon(logo),
+                backgroundImage: AssetImage(imagePath),
                 radius: 30.0,
               ),
               SizedBox(height: 8.0),
@@ -269,7 +278,7 @@ class OpportunityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
+      width: 300, // Adjust the width as per your requirement
       child: Padding(
         padding: const EdgeInsets.all(6.0),
         child: ClipRRect(
@@ -278,7 +287,7 @@ class OpportunityCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
                   height: 200,
                   child: Image.asset(imagePath, fit: BoxFit.cover),
