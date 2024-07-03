@@ -110,7 +110,7 @@ class _HomeContentState extends State<HomeContent> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CategorySection(), // Use the new CategorySection widget here
+              const CategorySection(), 
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(

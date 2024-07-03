@@ -23,13 +23,13 @@ class _CategorySectionState extends State<CategorySection> {
     "Environment",
   ];
 
-  List<IconData> icons = [
-    Icons.house,
-    Icons.book,
-    Icons.local_offer,
-    Icons.local_hospital,
-    Icons.fastfood,
-    Icons.nature,
+  List<String> imagePaths = [
+    'assets/images/shelter.png',
+    'assets/images/education.png',
+    'assets/images/clothes.png',
+    'assets/images/health.png',
+    'assets/images/food.png',
+    'assets/images/environment.png',
   ];
 
   void _onCategoryTap(String category) {
@@ -103,7 +103,8 @@ class _CategorySectionState extends State<CategorySection> {
                 onTap: () => _onCategoryTap(categories[index]),
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.4,
-                  margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
+                  margin:
+                      const EdgeInsets.symmetric(vertical: 8, horizontal: 10),
                   padding: const EdgeInsets.symmetric(horizontal: 20),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(18),
@@ -112,7 +113,8 @@ class _CategorySectionState extends State<CategorySection> {
                     ),
                     boxShadow: [
                       BoxShadow(
-                        color: const Color.fromARGB(31, 160, 158, 158).withOpacity(0.1),
+                        color: const Color.fromARGB(31, 160, 158, 158)
+                            .withOpacity(0.1),
                         spreadRadius: 2,
                         blurRadius: 5,
                       )
@@ -121,7 +123,7 @@ class _CategorySectionState extends State<CategorySection> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Icon(icons[index], size: 40),
+                      Image.asset(imagePaths[index], width: 40, height: 40),
                       const SizedBox(width: 10),
                       Expanded(
                         child: Text(
