@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:volunteer_verse/features/home/donation_card.dart';
+import 'package:volunteer_verse/features/home/donation/donation_card.dart';
 
 class ShelterScreen extends StatelessWidget {
   const ShelterScreen({super.key});

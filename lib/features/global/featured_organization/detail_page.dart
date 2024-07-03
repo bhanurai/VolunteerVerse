@@ -16,7 +16,7 @@ class PrayasNepalApp extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: () {
-                      // Add back button functionality here
+                      Navigator.pop(context);
                     },
                   ),
                   SizedBox(width: 8.0),
@@ -80,7 +80,7 @@ class BabylifeHomePage extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: () {
-                      // Add back button functionality here
+                      Navigator.pop(context);
                     },
                   ),
                   SizedBox(width: 8.0),
@@ -146,7 +146,7 @@ class MaitiNepal extends StatelessWidget {
                   IconButton(
                     icon: Icon(Icons.arrow_back),
                     onPressed: () {
-                      // Add back button functionality here
+                      Navigator.pop(context);
                     },
                   ),
                   SizedBox(width: 8.0),
