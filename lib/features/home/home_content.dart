@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/home/donation/donation_card.dart';
 import 'package:volunteer_verse/features/home/home_page.dart';
+import 'package:volunteer_verse/features/home/menu/events.dart';
+import 'package:volunteer_verse/features/home/menu/my_performance.dart';
 import 'package:volunteer_verse/features/home/notification/notification.dart';
 import 'category_section.dart';
 
@@ -22,40 +24,33 @@ class _HomeContentState extends State<HomeContent> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Color.fromRGBO(97, 124, 181, 1),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset(
-                    'assets/images/logo.png',
-                    height: 65,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'VolunteerVerse',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
+            Container(
+              height: 230,
+              child: DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Color.fromRGBO(97, 124, 181, 1),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Image.asset(
+                      'assets/images/logo.png',
+                      height: 150,
+                      width: double.infinity,
+                      fit: BoxFit.cover,
                     ),
-                  ),
-                  Text(
-                    'Serve.Connect.Impact',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             ListTile(
               leading: Icon(Icons.event),
               title: Text('Events'),
               onTap: () {
-                // Handle events navigation here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => EventsPage()),
+                );
               },
             ),
             ListTile(
@@ -69,7 +64,10 @@ class _HomeContentState extends State<HomeContent> {
               leading: Icon(Icons.assessment),
               title: Text('My Performance'),
               onTap: () {
-                // Handle performance navigation here
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MyPerformancePage()),
+                );
               },
             ),
             ListTile(
@@ -100,8 +98,7 @@ class _HomeContentState extends State<HomeContent> {
                         onTap: () {
                           _scaffoldKey.currentState?.openDrawer();
                         },
-                        borderRadius: BorderRadius.circular(
-                            25.0), // Circular shape for tap effect
+                        borderRadius: BorderRadius.circular(25.0),
                         child: Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Icon(Icons.menu, color: Colors.white),
@@ -115,8 +112,7 @@ class _HomeContentState extends State<HomeContent> {
                                 builder: (context) => NotificationScreen()),
                           );
                         },
-                        borderRadius: BorderRadius.circular(
-                            25.0), // Circular shape for tap effect
+                        borderRadius: BorderRadius.circular(25.0),
                         child: Padding(
                           padding: EdgeInsets.all(12.0),
                           child: Icon(Icons.notifications, color: Colors.white),
