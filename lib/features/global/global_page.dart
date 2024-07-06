@@ -25,19 +25,29 @@ class _GlobalPageState extends State<GlobalPage> {
                       const EdgeInsets.only(top: 50.0, left: 3.0, right: 8.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      IconButton(
-                        icon: const Icon(Icons.menu, color: Colors.white),
-                        onPressed: () {
-                          // Handle menu button press
-                        },
-                      ),
-                      IconButton(
-                        icon: const Icon(Icons.notifications,
-                            color: Colors.white),
-                        onPressed: () {},
-                      ),
-                    ],
+                    // children: [
+                    //   IconButton(
+                    //     icon: const Icon(Icons.menu, color: Colors.white),
+                    //     onPressed: () {
+                    //       Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) => NotificationScreen()),
+                    //       );
+                    //     },
+                    //   ),
+                    //   IconButton(
+                    //     icon: const Icon(Icons.notifications,
+                    //         color: Colors.white),
+                    //     onPressed: () {
+                    //       Navigator.push(
+                    //         context,
+                    //         MaterialPageRoute(
+                    //             builder: (context) => NotificationScreen()),
+                    //       );
+                    //     },
+                    //   ),
+                    // ],
                   ),
                 ),
               ),

@@ -7,7 +7,7 @@ import 'package:volunteer_verse/features/home/notification/notification.dart';
 import 'category_section.dart';
 
 class HomeContent extends StatefulWidget {
-  const HomeContent({super.key});
+  const HomeContent({Key? key}) : super(key: key);
 
   @override
   _HomeContentState createState() => _HomeContentState();
@@ -24,23 +24,33 @@ class _HomeContentState extends State<HomeContent> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            Container(
-              height: 230,
-              child: DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Color.fromRGBO(97, 124, 181, 1),
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      height: 150,
-                      width: double.infinity,
-                      fit: BoxFit.cover,
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color.fromRGBO(97, 124, 181, 1),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset(
+                    'assets/images/logo.png',
+                    height: 65,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'VolunteerVerse',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
                     ),
-                  ],
-                ),
+                  ),
+                  Text(
+                    'Serve.Connect.Impact',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                    ),
+                  ),
+                ],
               ),
             ),
             ListTile(
@@ -56,9 +66,7 @@ class _HomeContentState extends State<HomeContent> {
             ListTile(
               leading: Icon(Icons.chat),
               title: Text('Chat'),
-              onTap: () {
-                // Handle chat navigation here
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: Icon(Icons.assessment),
@@ -66,7 +74,7 @@ class _HomeContentState extends State<HomeContent> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => MyPerformancePage()),
+                  MaterialPageRoute(builder: (context) => PerformancePage()),
                 );
               },
             ),
@@ -74,67 +82,57 @@ class _HomeContentState extends State<HomeContent> {
               leading: Icon(Icons.logout),
               title: Text('Logout'),
               onTap: () {
-                _showLogoutDialog();
+                _showLogoutDialog(context);
               },
             ),
           ],
         ),
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverPersistentHeader(
-            delegate: _SliverAppBarDelegate(
-              minHeight: 56.0,
-              maxHeight: 56.0,
-              child: Container(
-                color: const Color.fromRGBO(97, 124, 181, 1),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(top: 35.0, left: 3.0, right: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          _scaffoldKey.currentState?.openDrawer();
-                        },
-                        borderRadius: BorderRadius.circular(25.0),
-                        child: Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Icon(Icons.menu, color: Colors.white),
-                        ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              color: const Color.fromRGBO(97, 124, 181, 1),
+              child: Padding(
+                padding:
+                    const EdgeInsets.only(top: 35.0, left: 16.0, right: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        _scaffoldKey.currentState?.openDrawer();
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(12.0),
+                        child: Icon(Icons.menu, color: Colors.white),
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => NotificationScreen()),
-                          );
-                        },
-                        borderRadius: BorderRadius.circular(25.0),
-                        child: Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Icon(Icons.notifications, color: Colors.white),
-                        ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NotificationScreen()),
+                        );
+                      },
+                      child: Container(
+                        padding: EdgeInsets.all(12.0),
+                        child: Icon(Icons.notifications, color: Colors.white),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-            pinned: true,
-          ),
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
-            expandedHeight: 215.0,
-            pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              background: Column(
+            Container(
+              color: const Color.fromRGBO(97, 124, 181, 1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(height: 20),
-                  const Padding(
+                  const SizedBox(height: 5),
+                  Padding(
                     padding: EdgeInsets.all(18.0),
                     child: Align(
                       alignment: Alignment.topLeft,
@@ -149,7 +147,7 @@ class _HomeContentState extends State<HomeContent> {
                     ),
                   ),
                   const SizedBox(height: 5),
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.all(18.0),
                     child: Align(
                       alignment: Alignment.topCenter,
@@ -188,32 +186,25 @@ class _HomeContentState extends State<HomeContent> {
                 ],
               ),
             ),
-          ),
-          SliverToBoxAdapter(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const CategorySection(),
-                const Padding(
-                  padding: EdgeInsets.all(16.0),
-                  child: Text(
-                    'Donation',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
-                  child: DonationCard(),
-                ),
-              ],
+            const CategorySection(),
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'Donation',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
             ),
-          ),
-        ],
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: DonationCard(),
+            ),
+          ],
+        ),
       ),
     );
   }
 
-  void _showLogoutDialog() {
+  void _showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -231,7 +222,7 @@ class _HomeContentState extends State<HomeContent> {
               child: Text("Yes"),
               onPressed: () {
                 Navigator.of(context).pop();
-                _logout();
+                _logout(context);
               },
             ),
           ],
@@ -240,40 +231,10 @@ class _HomeContentState extends State<HomeContent> {
     );
   }
 
-  void _logout() {
+  void _logout(BuildContext context) {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(builder: (context) => HomePage()),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  final double minHeight;
-  final double maxHeight;
-  final Widget child;
-
-  _SliverAppBarDelegate({
-    required this.minHeight,
-    required this.maxHeight,
-    required this.child,
-  });
-
-  @override
-  double get minExtent => minHeight;
-  @override
-  double get maxExtent => maxHeight;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return SizedBox.expand(child: child);
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight ||
-        minHeight != oldDelegate.minHeight ||
-        child != oldDelegate.child;
   }
 }

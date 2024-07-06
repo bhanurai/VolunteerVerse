@@ -34,7 +34,7 @@ class _EventsPageState extends State<EventsPage> {
             onDaySelected: (selectedDay, focusedDay) {
               setState(() {
                 _selectedDay = selectedDay;
-                _focusedDay = focusedDay; // update `_focusedDay` here as well
+                _focusedDay = focusedDay;
               });
             },
             onFormatChanged: (format) {
@@ -60,20 +60,23 @@ class _EventsPageState extends State<EventsPage> {
   }
 
   List<Widget> _getEventWidgets() {
-    // Sample events for illustration purposes.
     return [
-      if (_selectedDay != null && isSameDay(_selectedDay, DateTime(2024, 5, 5)))
+      if (_selectedDay != null &&
+          isSameDay(_selectedDay, DateTime(2024, 7, 15)))
         Card(
+          color: Color.fromRGBO(97, 124, 181, 1),
           child: ListTile(
             title: Text("Environment Day"),
             subtitle: Text("Meet up at Jawalakhel, Lalitpur at 7:00 AM"),
           ),
         ),
-      if (_selectedDay != null && isSameDay(_selectedDay, DateTime(2024, 5, 8)))
+      if (_selectedDay != null &&
+          isSameDay(_selectedDay, DateTime(2024, 7, 24)))
         Card(
+          color: Color.fromRGBO(97, 124, 181, 1),
           child: ListTile(
-            title: Text("Another Event"),
-            subtitle: Text("Details about another event"),
+            title: Text("Blood Donation"),
+            subtitle: Text("Help someone by giving your blood"),
           ),
         ),
     ];
