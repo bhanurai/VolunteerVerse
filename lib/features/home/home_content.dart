@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/home/donation/donation_card.dart';
+import 'package:volunteer_verse/features/home/notification/notification.dart';
 import 'category_section.dart'; // Import the new category section
 
 class HomeContent extends StatefulWidget {
@@ -33,7 +34,13 @@ class _HomeContentState extends State<HomeContent> {
                     IconButton(
                       icon:
                           const Icon(Icons.notifications, color: Colors.white),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NotificationScreen()),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -110,7 +117,7 @@ class _HomeContentState extends State<HomeContent> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CategorySection(), 
+              const CategorySection(),
               const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
