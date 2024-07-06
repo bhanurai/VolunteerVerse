@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/home/donation/khalti/khalti_page.dart';
-import 'package:volunteer_verse/features/home/home_page.dart';
 import 'package:volunteer_verse/features/home/donation/donation_detail.dart';
 
 class DonationOption extends StatefulWidget {
@@ -100,38 +99,38 @@ class _DonationOptionState extends State<DonationOption> {
                           Image.asset('assets/images/khalti.png', height: 50),
                     ),
                     SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text("Thank You"),
-                              content: Text("Thank you for your support!"),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: Text("OK"),
-                                  onPressed: () {
-                                    Navigator.of(context)
-                                        .pop(); // Close the dialog
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => HomePage()),
-                                    );
-                                  },
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        foregroundColor: Colors.white,
-                        backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
-                      ),
-                      child: Text('Confirm Donate'),
-                    ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     showDialog(
+                    //       context: context,
+                    //       builder: (BuildContext context) {
+                    //         return AlertDialog(
+                    //           title: Text("Thank You"),
+                    //           content: Text("Thank you for your support!"),
+                    //           actions: <Widget>[
+                    //             TextButton(
+                    //               child: Text("OK"),
+                    //               onPressed: () {
+                    //                 Navigator.of(context)
+                    //                     .pop(); // Close the dialog
+                    //                 Navigator.push(
+                    //                   context,
+                    //                   MaterialPageRoute(
+                    //                       builder: (context) => HomePage()),
+                    //                 );
+                    //               },
+                    //             ),
+                    //           ],
+                    //         );
+                    //       },
+                    //     );
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //     foregroundColor: Colors.white,
+                    //     backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
+                    //   ),
+                    //   child: Text('Confirm Donate'),
+                    // ),
                   ],
                 ),
               ),
