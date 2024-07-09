@@ -17,7 +17,11 @@ class HomeContent extends StatefulWidget {
 
 class _HomeContentState extends State<HomeContent> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final List<String> organizations = ['Prayas Nepal', 'Baby Life Home', 'Maiti Nepal']; 
+  final List<String> organizations = [
+    'Prayas Nepal',
+    'Baby Life Home',
+    'Maiti Nepal'
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,26 +36,13 @@ class _HomeContentState extends State<HomeContent> {
                 color: Color.fromRGBO(97, 124, 181, 1),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset(
                     'assets/images/logo.png',
-                    height: 65,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'VolunteerVerse',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                  ),
-                  Text(
-                    'Serve.Connect.Impact',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 14,
-                    ),
+                    width: 240,
+                    height: 136,
+                    fit: BoxFit.fitWidth,
                   ),
                 ],
               ),
@@ -112,9 +103,12 @@ class _HomeContentState extends State<HomeContent> {
                       onTap: () {
                         _scaffoldKey.currentState?.openDrawer();
                       },
-                      child: Container(
-                        padding: EdgeInsets.all(12.0),
-                        child: Icon(Icons.menu, color: Colors.white),
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          padding: EdgeInsets.all(1.0),
+                          child: Icon(Icons.menu, color: Colors.white),
+                        ),
                       ),
                     ),
                     GestureDetector(
@@ -156,7 +150,7 @@ class _HomeContentState extends State<HomeContent> {
                   ),
                   const SizedBox(height: 5),
                   Padding(
-                    padding: EdgeInsets.all(18.0),
+                    padding: EdgeInsets.all(16.0),
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: Text(
@@ -178,7 +172,7 @@ class _HomeContentState extends State<HomeContent> {
                         width: 350,
                         height: 60,
                         child: TextField(
-                          readOnly: true, // Make the text field read-only
+                          readOnly: true,
                           onTap: () {
                             Navigator.push(
                               context,

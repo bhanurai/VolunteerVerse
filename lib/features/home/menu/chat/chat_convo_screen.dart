@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_sound/flutter_sound.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:io';
+import 'package:permission_handler/permission_handler.dart';
+import 'chat_message.dart';
+import 'chat_message_widget.dart';
 
 class ChatConvoScreen extends StatefulWidget {
   final String chatName;
@@ -52,33 +54,42 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
   Future<void> loadMessages() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? messagesString = prefs.getString('messages_${widget.chatName}');
-    if (messagesString != null) {
+    if (messagesString != null && messagesString.isNotEmpty) {
       setState(() {
         _messages = (json.decode(messagesString) as List)
             .map((data) => ChatMessage.fromJson(data))
             .toList();
       });
     } else {
-      // Adding some pre-existing messages
       setState(() {
         _messages = [
           ChatMessage(
             name: 'Admin',
-            message: 'Welcome to the Blood Donation Group!',
-            imageUrl: 'assets/blood_donation_group_icon.png',
+            message: 'Welcome to the ${widget.chatName}!',
+            imageUrl: 'assets/images/logo.png',
             isVoice: false,
-          ),
-          ChatMessage(
-            name: 'Admin',
-            message: 'Feel free to ask any questions.',
-            imageUrl: 'assets/blood_donation_group_icon.png',
-            isVoice: false,
+            isUser: false,
           ),
           ChatMessage(
             name: 'User1',
             message: 'Thank you! Looking forward to contributing.',
-            imageUrl: 'assets/your_image.png',
+            imageUrl: 'assets/images/food.png',
             isVoice: false,
+            isUser: false,
+          ),
+          ChatMessage(
+            name: 'User2',
+            message: 'Hello everyone! Excited to be here.',
+            imageUrl: 'assets/images/health.png',
+            isVoice: false,
+            isUser: false,
+          ),
+          ChatMessage(
+            name: 'User3',
+            message: 'Great to see such enthusiasm!',
+            imageUrl: 'assets/images/logo.png',
+            isVoice: false,
+            isUser: false,
           ),
         ];
       });
@@ -99,8 +110,9 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
         _messages.add(ChatMessage(
           name: 'You',
           message: _controller.text,
-          imageUrl: 'assets/your_image.png',
+          imageUrl: 'assets/images/me.jpg',
           isVoice: false,
+          isUser: true,
         ));
         _controller.clear();
       });
@@ -132,8 +144,9 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
           _messages.add(ChatMessage(
             name: 'You',
             message: filePath,
-            imageUrl: 'assets/your_image.png',
+            imageUrl: 'assets/images/me.jpg',
             isVoice: true,
+            isUser: true,
           ));
         });
         saveMessages();
@@ -148,6 +161,33 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
       _messages.removeAt(index);
     });
     saveMessages();
+  }
+
+  void _confirmDeleteMessage(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Message'),
+          content: Text('Are you sure you want to delete this message?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+                _deleteMessage(index);
+              },
+              child: Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
@@ -166,18 +206,16 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             child: ListView.builder(
               itemCount: _messages.length,
               itemBuilder: (context, index) {
-                return Dismissible(
-                  key: Key(_messages[index].message),
-                  onDismissed: (direction) {
-                    _deleteMessage(index);
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content: Text("Message deleted"),
-                    ));
-                  },
+                return GestureDetector(
+                  onLongPress: _messages[index].isUser
+                      ? () => _confirmDeleteMessage(index)
+                      : null,
                   child: ChatMessageWidget(
                     message: _messages[index],
                     player: _player,
-                    onDelete: () => _deleteMessage(index),
+                    onDelete: _messages[index].isUser
+                        ? () => _confirmDeleteMessage(index)
+                        : null,
                   ),
                 );
               },
@@ -208,90 +246,6 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ChatMessage {
-  final String name;
-  final String message;
-  final String imageUrl;
-  final bool isVoice;
-
-  ChatMessage({
-    required this.name,
-    required this.message,
-    required this.imageUrl,
-    required this.isVoice,
-  });
-
-  Map<String, dynamic> toJson() => {
-        'name': name,
-        'message': message,
-        'imageUrl': imageUrl,
-        'isVoice': isVoice,
-      };
-
-  factory ChatMessage.fromJson(Map<String, dynamic> json) {
-    return ChatMessage(
-      name: json['name'],
-      message: json['message'],
-      imageUrl: json['imageUrl'],
-      isVoice: json['isVoice'],
-    );
-  }
-}
-
-class ChatMessageWidget extends StatelessWidget {
-  final ChatMessage message;
-  final FlutterSoundPlayer player;
-  final VoidCallback onDelete;
-
-  ChatMessageWidget({
-    required this.message,
-    required this.player,
-    required this.onDelete,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundImage: AssetImage(message.imageUrl),
-          ),
-          SizedBox(width: 8.0),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(message.name,
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                message.isVoice
-                    ? IconButton(
-                        icon: Icon(Icons.play_arrow),
-                        onPressed: () async {
-                          await player.startPlayer(
-                            fromURI: message.message,
-                            codec: Codec.aacADTS,
-                            whenFinished: () {
-                              player.stopPlayer();
-                            },
-                          );
-                        },
-                      )
-                    : Text(message.message),
-              ],
-            ),
-          ),
-          IconButton(
-            icon: Icon(Icons.delete),
-            onPressed: onDelete,
           ),
         ],
       ),
