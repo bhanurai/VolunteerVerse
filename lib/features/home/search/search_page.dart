@@ -41,6 +41,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(97, 124, 181, 1),
         title: TextField(
           controller: _searchController,
           decoration: InputDecoration(
@@ -71,6 +72,7 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
+
 class OrganizationDetailPage extends StatelessWidget {
   final String organizationName;
 
@@ -86,7 +88,8 @@ class OrganizationDetailPage extends StatelessWidget {
         organizationDetail = PrayasNepalApp(organizationName: organizationName);
         break;
       case 'Baby Life Home':
-        organizationDetail = BabylifeHomePage(organizationName: organizationName);
+        organizationDetail =
+            BabylifeHomePage(organizationName: organizationName);
         break;
       case 'Maiti Nepal':
         organizationDetail = MaitiNepal(organizationName: organizationName);

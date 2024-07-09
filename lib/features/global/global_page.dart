@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/global/discover_opportunities/event1.dart';
 import 'package:volunteer_verse/features/global/discover_opportunities/event_page.dart';
 import 'package:volunteer_verse/features/global/featured_organization/detail_page.dart';
+import 'package:volunteer_verse/features/home/search/search_page.dart';
 
 class GlobalPage extends StatefulWidget {
   @override
@@ -9,6 +10,11 @@ class GlobalPage extends StatefulWidget {
 }
 
 class _GlobalPageState extends State<GlobalPage> {
+  final List<String> organizations = [
+    'Prayas Nepal',
+    'Baby Life Home',
+    'Maiti Nepal'
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,36 +26,6 @@ class _GlobalPageState extends State<GlobalPage> {
               maxHeight: 56.0,
               child: Container(
                 color: const Color.fromRGBO(97, 124, 181, 1),
-                child: Padding(
-                  padding:
-                      const EdgeInsets.only(top: 50.0, left: 3.0, right: 8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    // children: [
-                    //   IconButton(
-                    //     icon: const Icon(Icons.menu, color: Colors.white),
-                    //     onPressed: () {
-                    //       Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (context) => NotificationScreen()),
-                    //       );
-                    //     },
-                    //   ),
-                    //   IconButton(
-                    //     icon: const Icon(Icons.notifications,
-                    //         color: Colors.white),
-                    //     onPressed: () {
-                    //       Navigator.push(
-                    //         context,
-                    //         MaterialPageRoute(
-                    //             builder: (context) => NotificationScreen()),
-                    //       );
-                    //     },
-                    //   ),
-                    // ],
-                  ),
-                ),
               ),
             ),
             pinned: true,
@@ -57,21 +33,34 @@ class _GlobalPageState extends State<GlobalPage> {
           SliverAppBar(
             automaticallyImplyLeading: false,
             backgroundColor: const Color.fromRGBO(97, 124, 181, 1),
-            expandedHeight: 140.0,
+            expandedHeight: 130.0,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
               background: Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 70.0, 16.0, 16.0),
                 child: Container(
-                  margin: const EdgeInsets.only(bottom: 25.0),
+                  alignment: Alignment.topCenter,
+                  margin: const EdgeInsets.only(bottom: 16.0),
                   child: SizedBox(
-                    width: 450,
+                    width: 350,
+                    height: 60,
                     child: TextField(
+                      readOnly: true,
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SearchPage(
+                              organizations: organizations,
+                            ),
+                          ),
+                        );
+                      },
                       decoration: InputDecoration(
                         hintText: 'Search Organizations...',
                         prefixIcon: const Icon(Icons.search),
                         border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.0),
+                          borderRadius: BorderRadius.circular(8.0),
                         ),
                         fillColor: Colors.white,
                         filled: true,
@@ -105,7 +94,9 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PrayasNepalApp(organizationName: '',),
+                                builder: (context) => PrayasNepalApp(
+                                  organizationName: '',
+                                ),
                               ),
                             );
                           },
@@ -122,7 +113,9 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => BabylifeHomePage(organizationName: '',),
+                                builder: (context) => BabylifeHomePage(
+                                  organizationName: '',
+                                ),
                               ),
                             );
                           },
@@ -139,7 +132,9 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MaitiNepal(organizationName: '',),
+                                builder: (context) => MaitiNepal(
+                                  organizationName: '',
+                                ),
                               ),
                             );
                           },
