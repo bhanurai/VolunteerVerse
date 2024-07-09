@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/home/donation/donation_card.dart';
 import 'package:volunteer_verse/features/home/home_page.dart';
+import 'package:volunteer_verse/features/home/menu/chat/chat_list_screen.dart';
 import 'package:volunteer_verse/features/home/menu/events.dart';
 import 'package:volunteer_verse/features/home/menu/my_performance.dart';
 import 'package:volunteer_verse/features/home/notification/notification.dart';
@@ -66,7 +67,12 @@ class _HomeContentState extends State<HomeContent> {
             ListTile(
               leading: Icon(Icons.chat),
               title: Text('Chat'),
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ChatListScreen()),
+                );
+              },
             ),
             ListTile(
               leading: Icon(Icons.assessment),
