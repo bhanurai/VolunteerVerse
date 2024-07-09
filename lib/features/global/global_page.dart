@@ -105,7 +105,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => PrayasNepalApp(),
+                                builder: (context) => PrayasNepalApp(organizationName: '',),
                               ),
                             );
                           },
@@ -122,7 +122,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => BabylifeHomePage(),
+                                builder: (context) => BabylifeHomePage(organizationName: '',),
                               ),
                             );
                           },
@@ -139,7 +139,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => MaitiNepal(),
+                                builder: (context) => MaitiNepal(organizationName: '',),
                               ),
                             );
                           },

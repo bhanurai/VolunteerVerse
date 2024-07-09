@@ -1,64 +1,96 @@
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:flutter_sound/flutter_sound.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 import 'dart:io';
 
 class ChatConvoScreen extends StatefulWidget {
+  final String chatName;
+
+  ChatConvoScreen({required this.chatName});
+
   @override
   _ChatConvoScreenState createState() => _ChatConvoScreenState();
 }
 
 class _ChatConvoScreenState extends State<ChatConvoScreen> {
   final TextEditingController _controller = TextEditingController();
-  final List<ChatMessage> _messages = [
-    ChatMessage(
-      name: 'Jasmin Shrestha',
-      message:
-          'Dear Volunteers, We are thrilled to announce our upcoming Blood Donation Drive...',
-      imageUrl: 'assets/images/logo.png',
-      isVoice: false,
-    ),
-    ChatMessage(
-      name: 'Liam Lone',
-      message:
-          'Hi Emma! I think we\'re pretty much set. I\'ve confirmed the venue and time...',
-      imageUrl: 'assets/images/logo.png',
-      isVoice: false,
-    ),
-    ChatMessage(
-      name: 'Aiden Lara',
-      message:
-          'That\'s great news, Liam! I\'ve been working on the flyers and social media posts...',
-      imageUrl: 'assets/images/logo.png',
-      isVoice: false,
-    ),
-    ChatMessage(
-      name: 'Harry Loren',
-      message:
-          'Awesome work, Sophia! Maybe we could do a quick video message too?',
-      imageUrl: 'assets/images/logo.png',
-      isVoice: false,
-    ),
-  ];
   final FlutterSoundRecorder _recorder = FlutterSoundRecorder();
+  final FlutterSoundPlayer _player = FlutterSoundPlayer();
   bool _isRecording = false;
+  List<ChatMessage> _messages = [];
 
   @override
   void initState() {
     super.initState();
-    _recorder.openRecorder();
     requestMicrophonePermission();
+    initializeSound();
+    loadMessages();
   }
 
   @override
   void dispose() {
     _controller.dispose();
     _recorder.closeRecorder();
+    _player.closePlayer();
     super.dispose();
   }
 
   Future<void> requestMicrophonePermission() async {
-    await Permission.microphone.request();
+    var status = await Permission.microphone.request();
+    if (status != PermissionStatus.granted) {
+      throw RecordingPermissionException('Microphone permission not granted');
+    }
+  }
+
+  Future<void> initializeSound() async {
+    await _recorder.openRecorder();
+    await _player.openPlayer();
+  }
+
+  Future<void> loadMessages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? messagesString = prefs.getString('messages_${widget.chatName}');
+    if (messagesString != null) {
+      setState(() {
+        _messages = (json.decode(messagesString) as List)
+            .map((data) => ChatMessage.fromJson(data))
+            .toList();
+      });
+    } else {
+      // Adding some pre-existing messages
+      setState(() {
+        _messages = [
+          ChatMessage(
+            name: 'Admin',
+            message: 'Welcome to the Blood Donation Group!',
+            imageUrl: 'assets/blood_donation_group_icon.png',
+            isVoice: false,
+          ),
+          ChatMessage(
+            name: 'Admin',
+            message: 'Feel free to ask any questions.',
+            imageUrl: 'assets/blood_donation_group_icon.png',
+            isVoice: false,
+          ),
+          ChatMessage(
+            name: 'User1',
+            message: 'Thank you! Looking forward to contributing.',
+            imageUrl: 'assets/your_image.png',
+            isVoice: false,
+          ),
+        ];
+      });
+      saveMessages();
+    }
+  }
+
+  Future<void> saveMessages() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String messagesString =
+        json.encode(_messages.map((msg) => msg.toJson()).toList());
+    prefs.setString('messages_${widget.chatName}', messagesString);
   }
 
   void _sendMessage() {
@@ -67,45 +99,62 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
         _messages.add(ChatMessage(
           name: 'You',
           message: _controller.text,
-          imageUrl: 'assets/images/logo.png',
+          imageUrl: 'assets/your_image.png',
           isVoice: false,
         ));
         _controller.clear();
       });
+      saveMessages();
     }
   }
 
-  void _startRecording() async {
-    Directory tempDir = await Directory.systemTemp.createTemp();
-    String filePath = '${tempDir.path}/temp.aac';
-    await _recorder.startRecorder(toFile: filePath, codec: Codec.aacADTS);
-    setState(() {
-      _isRecording = true;
-    });
-  }
-
-  void _stopRecording() async {
-    String? filePath = await _recorder.stopRecorder();
-    setState(() {
-      _isRecording = false;
-    });
-    if (filePath != null) {
+  Future<void> _startRecording() async {
+    try {
+      Directory tempDir = await Directory.systemTemp.createTemp();
+      String filePath = '${tempDir.path}/temp.aac';
+      await _recorder.startRecorder(toFile: filePath, codec: Codec.aacADTS);
       setState(() {
-        _messages.add(ChatMessage(
-          name: 'You',
-          message: filePath,
-          imageUrl: 'assets/image/me.jpg',
-          isVoice: true,
-        ));
+        _isRecording = true;
       });
+    } catch (e) {
+      print('Failed to start recording: $e');
     }
+  }
+
+  Future<void> _stopRecording() async {
+    try {
+      String? filePath = await _recorder.stopRecorder();
+      setState(() {
+        _isRecording = false;
+      });
+      if (filePath != null) {
+        setState(() {
+          _messages.add(ChatMessage(
+            name: 'You',
+            message: filePath,
+            imageUrl: 'assets/your_image.png',
+            isVoice: true,
+          ));
+        });
+        saveMessages();
+      }
+    } catch (e) {
+      print('Failed to stop recording: $e');
+    }
+  }
+
+  void _deleteMessage(int index) {
+    setState(() {
+      _messages.removeAt(index);
+    });
+    saveMessages();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Blood Donation Group'),
+        title: Text(widget.chatName),
         actions: [
           IconButton(icon: Icon(Icons.search), onPressed: () {}),
           IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
@@ -117,8 +166,19 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             child: ListView.builder(
               itemCount: _messages.length,
               itemBuilder: (context, index) {
-                return ChatMessageWidget(
-                  message: _messages[index],
+                return Dismissible(
+                  key: Key(_messages[index].message),
+                  onDismissed: (direction) {
+                    _deleteMessage(index);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Message deleted"),
+                    ));
+                  },
+                  child: ChatMessageWidget(
+                    message: _messages[index],
+                    player: _player,
+                    onDelete: () => _deleteMessage(index),
+                  ),
                 );
               },
             ),
@@ -167,20 +227,34 @@ class ChatMessage {
     required this.imageUrl,
     required this.isVoice,
   });
+
+  Map<String, dynamic> toJson() => {
+        'name': name,
+        'message': message,
+        'imageUrl': imageUrl,
+        'isVoice': isVoice,
+      };
+
+  factory ChatMessage.fromJson(Map<String, dynamic> json) {
+    return ChatMessage(
+      name: json['name'],
+      message: json['message'],
+      imageUrl: json['imageUrl'],
+      isVoice: json['isVoice'],
+    );
+  }
 }
 
 class ChatMessageWidget extends StatelessWidget {
   final ChatMessage message;
-  final FlutterSoundPlayer _player = FlutterSoundPlayer();
+  final FlutterSoundPlayer player;
+  final VoidCallback onDelete;
 
-  ChatMessageWidget({required this.message}) {
-    _player.openPlayer();
-  }
-
-  @override
-  void dispose() {
-    _player.closePlayer();
-  }
+  ChatMessageWidget({
+    required this.message,
+    required this.player,
+    required this.onDelete,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -201,14 +275,23 @@ class ChatMessageWidget extends StatelessWidget {
                 message.isVoice
                     ? IconButton(
                         icon: Icon(Icons.play_arrow),
-                        onPressed: () {
-                          _player.startPlayer(
-                              fromURI: message.message, codec: Codec.aacADTS);
+                        onPressed: () async {
+                          await player.startPlayer(
+                            fromURI: message.message,
+                            codec: Codec.aacADTS,
+                            whenFinished: () {
+                              player.stopPlayer();
+                            },
+                          );
                         },
                       )
                     : Text(message.message),
               ],
             ),
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            onPressed: onDelete,
           ),
         ],
       ),

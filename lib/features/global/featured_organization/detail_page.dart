@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class PrayasNepalApp extends StatelessWidget {
+  final String? organizationName;
+
+  const PrayasNepalApp({Key? key, required this.organizationName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +30,7 @@ class PrayasNepalApp extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         decoration: TextDecoration.none),
-                    child: Text('Prayas Nepal'),
+                    child: Text(organizationName!),
                   ),
                 ],
               ),
@@ -65,6 +69,10 @@ class PrayasNepalApp extends StatelessWidget {
 }
 
 class BabylifeHomePage extends StatelessWidget {
+  final String? organizationName;
+
+  const BabylifeHomePage({Key? key, required this.organizationName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -90,9 +98,7 @@ class BabylifeHomePage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         decoration: TextDecoration.none),
-                    child: Text(
-                      'Baby Life Home',
-                    ),
+                    child: Text(organizationName!),
                   ),
                 ],
               ),
@@ -131,6 +137,10 @@ class BabylifeHomePage extends StatelessWidget {
 }
 
 class MaitiNepal extends StatelessWidget {
+  final String? organizationName;
+
+  const MaitiNepal({Key? key, required this.organizationName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -156,7 +166,7 @@ class MaitiNepal extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         decoration: TextDecoration.none),
-                    child: Text('Maiti Nepal'),
+                    child: Text(organizationName!),
                   ),
                 ],
               ),
