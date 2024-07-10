@@ -25,12 +25,6 @@ class ChatMessageWidget extends StatelessWidget {
               },
             )
           : Text(message.message),
-      trailing: onDelete != null
-          ? IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: onDelete,
-            )
-          : null,
     );
   }
 }

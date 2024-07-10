@@ -195,10 +195,6 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.chatName),
-        actions: [
-          IconButton(icon: Icon(Icons.search), onPressed: () {}),
-          IconButton(icon: Icon(Icons.more_vert), onPressed: () {}),
-        ],
       ),
       body: Column(
         children: [
