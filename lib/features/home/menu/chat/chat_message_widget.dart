@@ -6,18 +6,15 @@ class ChatMessageWidget extends StatelessWidget {
   final ChatMessage message;
   final FlutterSoundPlayer player;
 
-  ChatMessageWidget({
-    required this.message,
-    required this.player,
-  });
+  ChatMessageWidget({required this.message, required this.player});
 
   @override
   Widget build(BuildContext context) {
     bool isUser = message.isUser;
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0), 
-      padding: EdgeInsets.all(10.0), 
+      margin: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+      padding: EdgeInsets.all(10.0),
       alignment: isUser ? Alignment.centerRight : Alignment.centerLeft,
       child: Container(
         decoration: BoxDecoration(
@@ -25,25 +22,37 @@ class ChatMessageWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         padding: EdgeInsets.all(10.0),
-        child: Column(
+        child: Row(
           crossAxisAlignment:
               isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
-            Text(
-              message.name,
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: isUser ? Colors.blue : Colors.black,
+            CircleAvatar(
+              backgroundImage: AssetImage(message.imageUrl),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                crossAxisAlignment:
+                    isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    message.name,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: isUser ? Colors.blue : Colors.black,
+                    ),
+                  ),
+                  message.isVoice
+                      ? IconButton(
+                          icon: Icon(Icons.play_arrow),
+                          onPressed: () {
+                            player.startPlayer(fromURI: message.message);
+                          },
+                        )
+                      : Text(message.message),
+                ],
               ),
             ),
-            message.isVoice
-                ? IconButton(
-                    icon: Icon(Icons.play_arrow),
-                    onPressed: () {
-                      player.startPlayer(fromURI: message.message);
-                    },
-                  )
-                : Text(message.message),
           ],
         ),
       ),
