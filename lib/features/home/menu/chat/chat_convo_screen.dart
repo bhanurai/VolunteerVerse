@@ -60,7 +60,9 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             .map((data) => ChatMessage.fromJson(data))
             .toList();
       });
-    } else {
+    }
+
+    if (_messages.isEmpty) {
       setState(() {
         _messages = [
           ChatMessage(
@@ -209,9 +211,6 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
                   child: ChatMessageWidget(
                     message: _messages[index],
                     player: _player,
-                    onDelete: _messages[index].isUser
-                        ? () => _confirmDeleteMessage(index)
-                        : null,
                   ),
                 );
               },
