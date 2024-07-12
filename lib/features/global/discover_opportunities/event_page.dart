@@ -25,7 +25,7 @@ class CleanupPage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         children: <Widget>[
           Image.asset(
-            'assets/images/bagmati.jpg', 
+            'assets/images/bagmati.jpg',
             height: 200,
             fit: BoxFit.cover,
           ),
@@ -54,7 +54,7 @@ class CleanupPage extends StatelessWidget {
             children: <Widget>[
               Icon(Icons.access_time),
               SizedBox(width: 8.0),
-              Text('May 28, 09:00 AM-12PM'),
+              Text('July 18, 07:00 AM-12PM'),
             ],
           ),
           SizedBox(height: 16.0),
@@ -64,7 +64,7 @@ class CleanupPage extends StatelessWidget {
           ),
           SizedBox(height: 16.0),
           Image.network(
-            'https://example.com/map_image.jpg', // Replace with your map image URL
+            'https://example.com/map_image.jpg',
             height: 200,
             fit: BoxFit.cover,
           ),

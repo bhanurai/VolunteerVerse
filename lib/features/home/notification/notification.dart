@@ -8,33 +8,23 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   final List<Map<String, String>> notifications = [
     {
-      'title': 'Donation Successful!',
-      'subtitle': 'You have made a blood donation campaign.',
-      'date': 'Today',
+      'title': 'Account Setup Successful!',
+      'subtitle': 'Your account has been created!',
+      'date': 'July 14, 2024',
       'icon': 'assets/images/logo.png',
     },
     {
       'title': 'Bagmati Cleaning Event',
-      'subtitle': 'Event is going to happen at June 1st so don\'t miss it out.',
-      'date': 'Today',
+      'subtitle':
+          'Event is going to happen at July 18th so don\'t miss it out.',
+      'date': 'July 18, 2024',
       'icon': 'assets/images/logo.png',
     },
     {
-      'title': 'Vacancy available!!',
-      'subtitle': 'New the DKR education is available for volunteers.',
-      'date': 'Yesterday',
-      'icon': 'assets/images/logo.png',
-    },
-    {
-      'title': 'Your profile has been updated',
-      'subtitle': 'Now you can view your new profile.',
-      'date': 'Yesterday',
-      'icon': 'assets/images/logo.png',
-    },
-    {
-      'title': 'Account Setup Successful!',
-      'subtitle': 'Your account has been created!',
-      'date': 'May 21,2024',
+      'title': 'Tudhikhel Cleanup',
+      'subtitle':
+          'Event is going to happen at July 24th so don\'t miss it out.',
+      'date': 'July 24, 2024',
       'icon': 'assets/images/logo.png',
     },
   ];

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:volunteer_verse/features/global/discover_opportunities/event1.dart';
+import 'package:volunteer_verse/features/global/discover_opportunities/event_page.dart';
 
 class Event {
   final DateTime date;
@@ -21,14 +23,14 @@ class _EventsPageState extends State<EventsPage> {
 
   List<Event> _events = [
     Event(
-      date: DateTime(2024, 7, 15),
-      title: "Environment Day",
-      description: "Meet up at Jawalakhel, Lalitpur at 7:00 AM",
+      date: DateTime(2024, 7, 18),
+      title: "Bagmati River Cleanup",
+      description: "Meet up at Kumari Club, Kathmandu at 7:00 AM",
     ),
     Event(
       date: DateTime(2024, 7, 24),
-      title: "Blood Donation",
-      description: "Help someone by giving your blood",
+      title: "Tudhikhel Cleanup",
+      description: "Meet up at tudhikhel ground, Kathmandu at 6:00 AM",
     ),
   ];
 
@@ -109,25 +111,34 @@ class _EventsPageState extends State<EventsPage> {
   }
 
   List<Widget> _getEventWidgets() {
-    return [
-      if (_selectedDay != null &&
-          isSameDay(_selectedDay!, DateTime(2024, 7, 15)))
-        Card(
-          color: Color.fromRGBO(97, 124, 181, 1),
-          child: ListTile(
-            title: Text("Environment Day"),
-            subtitle: Text("Meet up at Jawalakhel, Lalitpur at 7:00 AM"),
-          ),
+    List<Event> eventsForSelectedDay =
+        _selectedDay == null ? [] : _getEventsForDay(_selectedDay!);
+
+    return eventsForSelectedDay.map((event) {
+      return Card(
+        color: Color.fromRGBO(97, 124, 181, 1),
+        child: ListTile(
+          title: Text(event.title),
+          subtitle: Text(event.description),
+          onTap: () {
+            if (event.date == DateTime(2024, 7, 18)) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BagmatiCleanupApp(),
+                ),
+              );
+            } else if (event.date == DateTime(2024, 7, 24)) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => TudhikhelCleanupApp(),
+                ),
+              );
+            }
+          },
         ),
-      if (_selectedDay != null &&
-          isSameDay(_selectedDay!, DateTime(2024, 7, 24)))
-        Card(
-          color: Color.fromRGBO(97, 124, 181, 1),
-          child: ListTile(
-            title: Text("Blood Donation"),
-            subtitle: Text("Help someone by giving your blood"),
-          ),
-        ),
-    ];
+      );
+    }).toList();
   }
 }
