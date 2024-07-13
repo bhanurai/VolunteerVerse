@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/global/featured_organization/detail_page.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -40,10 +41,10 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.star, color: Colors.yellow),
-                Icon(Icons.star, color: Colors.yellow),
-                Icon(Icons.star, color: Colors.yellow),
-                Icon(Icons.star, color: Colors.yellow),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
                 Icon(Icons.star_border),
                 Text(' 4.0', style: TextStyle(fontSize: 18)),
               ],
@@ -95,6 +96,60 @@ class _ProfilePageState extends State<ProfilePage> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
+            SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BabylifeHomePage(
+                          organizationName: '',
+                        ),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/baby.jpg'),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PrayasNepalApp(
+                          organizationName: '',
+                        ),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/prayas.png'),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => MaitiNepal(
+                          organizationName: '',
+                        ),
+                      ),
+                    );
+                  },
+                  child: CircleAvatar(
+                    radius: 30,
+                    backgroundImage: AssetImage('assets/images/maiti.jpg'),
+                  ),
+                ),
+              ],
             ),
             // Add more widgets for the rest of the page content here.
           ],

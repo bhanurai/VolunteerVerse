@@ -54,7 +54,7 @@ class CleanupPage extends StatelessWidget {
             children: <Widget>[
               Icon(Icons.access_time),
               SizedBox(width: 8.0),
-              Text('July 28, 06:00 AM-10AM'),
+              Text('July 24, 06:00 AM-10AM'),
             ],
           ),
           SizedBox(height: 16.0),

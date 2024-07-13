@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
         height: 60.0,
         color: const Color.fromRGBO(97, 124, 181, 1),
         buttonBackgroundColor: const Color.fromRGBO(97, 124, 181, 1),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.white12,
         animationCurve: Curves.easeInOut,
         animationDuration: const Duration(milliseconds: 600),
         onTap: _onItemTapped,
