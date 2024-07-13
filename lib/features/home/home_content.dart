@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/home/category_screens/category_section.dart';
 import 'package:volunteer_verse/features/home/donation/donation_card.dart';
 import 'package:volunteer_verse/features/home/home_page.dart';
 import 'package:volunteer_verse/features/home/menu/chat/chat_list_screen.dart';
@@ -6,7 +7,6 @@ import 'package:volunteer_verse/features/home/menu/events.dart';
 import 'package:volunteer_verse/features/home/menu/my_performance.dart';
 import 'package:volunteer_verse/features/home/notification/notification.dart';
 import 'package:volunteer_verse/features/home/search/search_page.dart';
-import 'category_section.dart';
 
 class HomeContent extends StatefulWidget {
   const HomeContent({Key? key}) : super(key: key);

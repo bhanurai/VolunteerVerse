@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:volunteer_verse/features/home/category_screens/clothes_screen.dart';
-import 'package:volunteer_verse/features/home/category_screens/education_screen.dart';
-import 'package:volunteer_verse/features/home/category_screens/environment_screen.dart';
-import 'package:volunteer_verse/features/home/category_screens/food_screens.dart';
-import 'package:volunteer_verse/features/home/category_screens/health_screen.dart';
-import 'package:volunteer_verse/features/home/category_screens/shelter_Screen.dart';
+import 'package:volunteer_verse/features/home/category_screens/category_lists/child_care_screen.dart';
+import 'package:volunteer_verse/features/home/category_screens/category_lists/development_screen.dart';
+import 'package:volunteer_verse/features/home/category_screens/category_lists/health_screen.dart';
+import 'package:volunteer_verse/features/home/category_screens/category_lists/women_empowerment_screen.dart';
 
 class CategorySection extends StatefulWidget {
-  const CategorySection({super.key});
+  const CategorySection({Key? key}) : super(key: key);
 
   @override
   _CategorySectionState createState() => _CategorySectionState();
@@ -15,68 +13,55 @@ class CategorySection extends StatefulWidget {
 
 class _CategorySectionState extends State<CategorySection> {
   List<String> categories = [
-    "Shelter",
-    "Education",
-    "Clothes",
+    "Women Empowerment",
     "Health",
-    "Food",
-    "Environment",
+    "Child Care",
+    "Development",
   ];
 
   List<String> imagePaths = [
     'assets/images/shelter.png',
-    'assets/images/education.png',
-    'assets/images/clothes.png',
     'assets/images/health.png',
-    'assets/images/food.png',
-    'assets/images/environment.png',
+    'assets/images/health.png',
+    'assets/images/health.png',
   ];
 
   void _onCategoryTap(String category) {
-    if (category == "Shelter") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ShelterScreen(),
-        ),
-      );
-    } else if (category == "Education") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const EducationScreen(),
-        ),
-      );
-    } else if (category == "Clothes") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const ClothesScreen(),
-        ),
-      );
-    } else if (category == "Health") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const HealthScreen(),
-        ),
-      );
-    } else if (category == "Food") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const FoodScreen(),
-        ),
-      );
-    } else if (category == "Environment") {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const EnvironmentScreen(),
-        ),
-      );
-    } else {
-      print("Tapped on $category");
+    switch (category) {
+      case "Development":
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => DevelopmentScreen(),
+          ),
+        );
+        break;
+      case "Women Empowerment":
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => WomenEmpowerment(),
+          ),
+        );
+        break;
+      case "Child Care":
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChildCareScreen(),
+          ),
+        );
+        break;
+      case "Health":
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => HealthScreen(),
+          ),
+        );
+        break;
+      default:
+        print("Tapped on $category");
     }
   }
 
