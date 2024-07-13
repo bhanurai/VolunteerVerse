@@ -20,10 +20,10 @@ class _CategorySectionState extends State<CategorySection> {
   ];
 
   List<String> imagePaths = [
-    'assets/images/shelter.png',
+    'assets/images/women.png',
     'assets/images/health.png',
-    'assets/images/health.png',
-    'assets/images/health.png',
+    'assets/images/child.png',
+    'assets/images/develop.png',
   ];
 
   void _onCategoryTap(String category) {

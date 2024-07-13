@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/auth/login_page.dart';
 import 'package:volunteer_verse/features/home/category_screens/category_section.dart';
 import 'package:volunteer_verse/features/home/donation/donation_card.dart';
 import 'package:volunteer_verse/features/home/home_page.dart';
@@ -234,8 +235,10 @@ class _HomeContentState extends State<HomeContent> {
             TextButton(
               child: Text("Yes"),
               onPressed: () {
-                Navigator.of(context).pop();
-                _logout(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
               },
             ),
           ],
