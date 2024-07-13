@@ -22,35 +22,31 @@ class ChatMessageWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
         padding: EdgeInsets.all(10.0),
-        child: Row(
+        child: Column(
           crossAxisAlignment:
               isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              backgroundImage: AssetImage(message.imageUrl),
+            Text(
+              message.name,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: isUser ? Colors.blue : Colors.black,
+              ),
             ),
-            SizedBox(width: 10),
-            Expanded(
-              child: Column(
-                crossAxisAlignment:
-                    isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    message.name,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: isUser ? Colors.blue : Colors.black,
-                    ),
-                  ),
-                  message.isVoice
-                      ? IconButton(
-                          icon: Icon(Icons.play_arrow),
-                          onPressed: () {
-                            player.startPlayer(fromURI: message.message);
-                          },
-                        )
-                      : Text(message.message),
-                ],
+            message.isVoice
+                ? IconButton(
+                    icon: Icon(Icons.play_arrow),
+                    onPressed: () {
+                      player.startPlayer(fromURI: message.message);
+                    },
+                  )
+                : Text(message.message),
+            SizedBox(height: 5),
+            Text(
+              message.time,
+              style: TextStyle(
+                fontSize: 10,
+                color: Colors.grey[600],
               ),
             ),
           ],

@@ -54,12 +54,15 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
   Future<void> loadMessages() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? messagesString = prefs.getString('messages_${widget.chatName}');
+    print('Loaded messagesString: $messagesString');
+
     if (messagesString != null && messagesString.isNotEmpty) {
       setState(() {
         _messages = (json.decode(messagesString) as List)
             .map((data) => ChatMessage.fromJson(data))
             .toList();
       });
+      print('Loaded messages: $_messages');
     }
 
     if (_messages.isEmpty) {
@@ -71,30 +74,19 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             imageUrl: 'assets/images/logo.png',
             isVoice: false,
             isUser: false,
+            time: _formatCurrentTime(),
           ),
           ChatMessage(
-            name: 'User1',
+            name: 'Gita Rana',
             message: 'Thank you! Looking forward to contributing.',
             imageUrl: 'assets/images/food.png',
             isVoice: false,
             isUser: false,
-          ),
-          ChatMessage(
-            name: 'User2',
-            message: 'Hello everyone! Excited to be here.',
-            imageUrl: 'assets/images/health.png',
-            isVoice: false,
-            isUser: false,
-          ),
-          ChatMessage(
-            name: 'User3',
-            message: 'Great to see such enthusiasm!',
-            imageUrl: 'assets/images/logo.png',
-            isVoice: false,
-            isUser: false,
+            time: _formatCurrentTime(),
           ),
         ];
       });
+      print('Set default messages: $_messages');
       saveMessages();
     }
   }
@@ -103,7 +95,13 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String messagesString =
         json.encode(_messages.map((msg) => msg.toJson()).toList());
-    prefs.setString('messages_${widget.chatName}', messagesString);
+    await prefs.setString('messages_${widget.chatName}', messagesString);
+    print('Saved messagesString: $messagesString');
+  }
+
+  String _formatCurrentTime() {
+    final now = DateTime.now();
+    return "${now.hour}:${now.minute.toString().padLeft(2, '0')}";
   }
 
   void _sendMessage() {
@@ -115,6 +113,7 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
           imageUrl: 'assets/images/me.jpg',
           isVoice: false,
           isUser: true,
+          time: _formatCurrentTime(),
         ));
         _controller.clear();
       });
@@ -149,6 +148,7 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             imageUrl: 'assets/images/me.jpg',
             isVoice: true,
             isUser: true,
+            time: _formatCurrentTime(),
           ));
         });
         saveMessages();
@@ -204,6 +204,7 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             child: ListView.builder(
               itemCount: _messages.length,
               itemBuilder: (context, index) {
+                print('Building message at index $index: ${_messages[index]}');
                 return GestureDetector(
                   onLongPress: _messages[index].isUser
                       ? () => _confirmDeleteMessage(index)
