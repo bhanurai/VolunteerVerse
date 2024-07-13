@@ -84,6 +84,14 @@ class _ChatConvoScreenState extends State<ChatConvoScreen> {
             isUser: false,
             time: _formatCurrentTime(),
           ),
+          ChatMessage(
+            name: 'Ramesh Singh',
+            message: 'Thank you! I m very existing to work with you guys.',
+            imageUrl: 'assets/images/food.png',
+            isVoice: false,
+            isUser: false,
+            time: _formatCurrentTime(),
+          ),
         ];
       });
       print('Set default messages: $_messages');
