@@ -55,12 +55,12 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
                 Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
-                Text('', style: TextStyle(fontSize: 18)),
+                Text('4.0', style: TextStyle(fontSize: 18)),
               ],
             ),
             SizedBox(height: 20),
@@ -83,7 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'NA',
+                        '104 Days',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -98,20 +98,20 @@ class _ProfilePageState extends State<ProfilePage> {
                             fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        'NA',
+                        '150',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
                   Column(
                     children: [
-                      Icon(Icons.monetization_on),
+                      Icon(Icons.monetization_on_outlined),
                       SizedBox(height: 8),
                       Text('Impact',
                           style: TextStyle(
                               fontSize: 15, fontWeight: FontWeight.bold)),
                       Text(
-                        'NA',
+                        '40000',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],

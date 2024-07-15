@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/global/global_page.dart';
 import 'package:volunteer_verse/features/map/map2.dart';
 
 class TudhikhelCleanupApp extends StatelessWidget {
@@ -25,7 +26,7 @@ class CleanupPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => CleanupPage()),
+              MaterialPageRoute(builder: (context) => GlobalPage()),
             );
           },
         ),

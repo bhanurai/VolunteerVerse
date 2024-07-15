@@ -7,7 +7,20 @@ class PerformancePage extends StatefulWidget {
 }
 
 class _PerformancePageState extends State<PerformancePage> {
-  List<OrganizationData> organizations = [];
+  List<OrganizationData> organizations = [
+    OrganizationData(
+        name: 'Prayas Nepal',
+        imagePath: 'assets/images/prayas.png',
+        hoursWorked: 50),
+    OrganizationData(
+        name: 'Baby Life Home',
+        imagePath: 'assets/images/baby.jpg',
+        hoursWorked: 30),
+    OrganizationData(
+        name: 'Maiti Nepal',
+        imagePath: 'assets/images/maiti.jpg',
+        hoursWorked: 70),
+  ];
 
   int totalWorkingHours = 0;
 
@@ -54,11 +67,11 @@ class _PerformancePageState extends State<PerformancePage> {
                   lineBarsData: [
                     LineChartBarData(
                       spots: [
-                        FlSpot(0, 0),
-                        FlSpot(0, 0),
-                        FlSpot(0, 0),
-                        FlSpot(0, 0),
-                        FlSpot(0, 0),
+                        FlSpot(0, 3),
+                        FlSpot(1, 1),
+                        FlSpot(2, 4),
+                        FlSpot(3, 2),
+                        FlSpot(4, 5),
                       ],
                       isCurved: true,
                       colors: [Colors.blue],
@@ -77,19 +90,12 @@ class _PerformancePageState extends State<PerformancePage> {
             ),
             SizedBox(height: 16.0),
             Expanded(
-              child: organizations.isNotEmpty
-                  ? ListView.builder(
-                      itemCount: organizations.length,
-                      itemBuilder: (context, index) {
-                        return _buildOrganizationCard(organizations[index]);
-                      },
-                    )
-                  : Center(
-                      child: Text(
-                        'N/A',
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+              child: ListView.builder(
+                itemCount: organizations.length,
+                itemBuilder: (context, index) {
+                  return _buildOrganizationCard(organizations[index]);
+                },
+              ),
             ),
             SizedBox(height: 16.0),
             Text(

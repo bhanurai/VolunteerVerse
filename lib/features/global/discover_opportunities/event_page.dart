@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/global/global_page.dart';
 import 'package:volunteer_verse/features/map/map.dart';
 
 class BagmatiCleanupApp extends StatelessWidget {
@@ -23,7 +24,10 @@ class CleanupPage extends StatelessWidget {
         title: Text('Bagmati River Cleanup'),
         leading: BackButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => GlobalPage()),
+            );
           },
         ),
       ),
