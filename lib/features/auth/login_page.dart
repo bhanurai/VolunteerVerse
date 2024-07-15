@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/config/routes/app_routes.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:volunteer_verse/features/auth/biometric_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -14,7 +15,15 @@ class _LoginViewState extends State<LoginPage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   bool isObscure = true;
+  bool showBiometric = false;
+  bool isAuthenticated = false;
   String? _errorMessage;
+
+  @override
+  void initState() {
+    super.initState();
+    isBiometricsAvailable();
+  }
 
   Future<void> _login() async {
     if (_formKey.currentState!.validate()) {
@@ -39,6 +48,26 @@ class _LoginViewState extends State<LoginPage> {
         });
       }
     }
+  }
+
+  Future<void> isBiometricsAvailable() async {
+    showBiometric = await BiometricPage().hasEnrolledBiometrics();
+    setState(() {});
+  }
+
+  Future<void> _authenticateWithBiometrics() async {
+    isAuthenticated = await BiometricPage().authenticate();
+    if (isAuthenticated) {
+      Navigator.of(context).pushReplacementNamed(AppRoute.dashboardRoute);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Biometric Authentication Failed'),
+          backgroundColor: Colors.red,
+        ),
+      );
+    }
+    setState(() {});
   }
 
   @override
@@ -154,21 +183,6 @@ class _LoginViewState extends State<LoginPage> {
                 },
               ),
               SizedBox(height: 20),
-              // Align(
-              //   alignment: Alignment.centerRight,
-              //   child: TextButton(
-              //     onPressed: () {
-              //       // Navigator.pushNamed(context, AppRoute.forgotPasswordRoute);
-              //     },
-              //     child: const Text(
-              //       'Forgot Password?',
-              //       style: TextStyle(
-              //         color: Colors.red,
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _login,
                 style: ElevatedButton.styleFrom(
@@ -180,8 +194,7 @@ class _LoginViewState extends State<LoginPage> {
                   ),
                   padding: const EdgeInsets.symmetric(
                       vertical: 12.0, horizontal: 24.0),
-                  minimumSize:
-                      const Size(50, 50),
+                  minimumSize: const Size(50, 50),
                 ),
                 child: const Text(
                   'Login',
@@ -202,13 +215,17 @@ class _LoginViewState extends State<LoginPage> {
                 ),
               ),
               const SizedBox(height: 10),
-              Center(
-                child: Icon(
-                  Icons.fingerprint,
-                  size: 40,
-                  color: Color.fromRGBO(97, 124, 181, 1),
+              if (showBiometric)
+                Center(
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.fingerprint,
+                      size: 40,
+                      color: Color.fromRGBO(97, 124, 181, 1),
+                    ),
+                    onPressed: _authenticateWithBiometrics,
+                  ),
                 ),
-              ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
