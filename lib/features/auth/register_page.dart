@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/config/routes/app_routes.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -67,6 +68,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       return 'Passwords do not match';
     }
     return null;
+  }
+
+  Future<void> _register() async {
+    if (_formKey.currentState!.validate()) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('email', _emailController.text);
+      await prefs.setString('password', _passwordController.text);
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Registration successful'),
+          backgroundColor: Colors.green,
+        ),
+      );
+      Navigator.pushNamed(context, AppRoute.loginPageRoute);
+    }
   }
 
   @override
@@ -209,18 +226,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text('Registration successful'),
-                                backgroundColor: Colors.green,
-                              ),
-                            );
-                            Navigator.pushNamed(
-                                context, AppRoute.loginPageRoute);
-                          }
-                        },
+                        onPressed: _register,
                         child: Text(
                           'Register',
                           style: TextStyle(
