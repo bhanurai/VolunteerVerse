@@ -174,7 +174,7 @@ class _GlobalPageState extends State<GlobalPage> {
                             imagePath: 'assets/images/bagmati.jpg',
                             description:
                                 'Team up with a group and help pick up trash at Bagmati river.',
-                            eventDate: 'Event on Thus July 18',
+                            eventDate: 'Event on Thus July 24',
                           ),
                         ),
                         GestureDetector(
@@ -189,7 +189,7 @@ class _GlobalPageState extends State<GlobalPage> {
                           child: OpportunityCard(
                             imagePath: 'assets/images/tudikhel.png',
                             description: 'Team up with a group and ...',
-                            eventDate: 'Event on Wed July 24',
+                            eventDate: 'Event on Wed July 28',
                           ),
                         ),
                       ],

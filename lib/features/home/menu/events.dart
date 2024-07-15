@@ -121,14 +121,14 @@ class _EventsPageState extends State<EventsPage> {
           title: Text(event.title),
           subtitle: Text(event.description),
           onTap: () {
-            if (event.date == DateTime(2024, 7, 18)) {
+            if (event.date == DateTime(2024, 7, 24)) {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => BagmatiCleanupApp(),
                 ),
               );
-            } else if (event.date == DateTime(2024, 7, 24)) {
+            } else if (event.date == DateTime(2024, 7, 28)) {
               Navigator.push(
                 context,
                 MaterialPageRoute(

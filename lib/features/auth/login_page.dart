@@ -153,20 +153,21 @@ class _LoginViewState extends State<LoginPage> {
                   return null;
                 },
               ),
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    // Navigator.pushNamed(context, AppRoute.forgotPasswordRoute);
-                  },
-                  child: const Text(
-                    'Forgot Password?',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-              ),
+              SizedBox(height: 20),
+              // Align(
+              //   alignment: Alignment.centerRight,
+              //   child: TextButton(
+              //     onPressed: () {
+              //       // Navigator.pushNamed(context, AppRoute.forgotPasswordRoute);
+              //     },
+              //     child: const Text(
+              //       'Forgot Password?',
+              //       style: TextStyle(
+              //         color: Colors.red,
+              //       ),
+              //     ),
+              //   ),
+              // ),
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: _login,
@@ -180,7 +181,7 @@ class _LoginViewState extends State<LoginPage> {
                   padding: const EdgeInsets.symmetric(
                       vertical: 12.0, horizontal: 24.0),
                   minimumSize:
-                      const Size(50, 50), // Adjust the minimum size as needed
+                      const Size(50, 50),
                 ),
                 child: const Text(
                   'Login',

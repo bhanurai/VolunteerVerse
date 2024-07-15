@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/config/routes/app_routes.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RegistrationScreen extends StatefulWidget {
   @override
@@ -17,7 +16,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
   final _confirmPasswordFocusNode = FocusNode();
-  bool isObscure = true;
+  bool isPasswordObscure = true;
+  bool isConfirmPasswordObscure = true;
 
   @override
   void dispose() {
@@ -30,23 +30,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     _passwordFocusNode.dispose();
     _confirmPasswordFocusNode.dispose();
     super.dispose();
-  }
-
-  Future<void> _register() async {
-    if (_formKey.currentState!.validate()) {
-      SharedPreferences prefs = await SharedPreferences.getInstance();
-      await prefs.setString('username', _usernameController.text);
-      await prefs.setString('email', _emailController.text);
-      await prefs.setString('password', _passwordController.text);
-
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Registration successful'),
-          backgroundColor: Colors.green,
-        ),
-      );
-      Navigator.pushNamed(context, AppRoute.loginPageRoute);
-    }
   }
 
   String? _validateUsername(String? value) {
@@ -128,7 +111,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       controller: _usernameController,
                       focusNode: _usernameFocusNode,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.person),
+                        prefixIcon: Icon(Icons.person,
+                            color: Color.fromRGBO(97, 124, 181, 1)),
                         hintText: 'Username',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
@@ -145,7 +129,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       controller: _emailController,
                       focusNode: _emailFocusNode,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.email),
+                        prefixIcon: Icon(Icons.email,
+                            color: Color.fromRGBO(97, 124, 181, 1)),
                         hintText: 'Email Address',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
@@ -161,17 +146,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     TextFormField(
                       controller: _passwordController,
                       focusNode: _passwordFocusNode,
-                      obscureText: isObscure,
+                      obscureText: isPasswordObscure,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: Icon(Icons.lock,
+                            color: Color.fromRGBO(97, 124, 181, 1)),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            isObscure ? Icons.visibility : Icons.visibility_off,
+                            isPasswordObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: Colors.grey,
                           ),
                           onPressed: () {
                             setState(() {
-                              isObscure = !isObscure;
+                              isPasswordObscure = !isPasswordObscure;
                             });
                           },
                         ),
@@ -191,17 +179,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     TextFormField(
                       controller: _confirmPasswordController,
                       focusNode: _confirmPasswordFocusNode,
-                      obscureText: isObscure,
+                      obscureText: isConfirmPasswordObscure,
                       decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.lock),
+                        prefixIcon: Icon(Icons.lock,
+                            color: Color.fromRGBO(97, 124, 181, 1)),
                         suffixIcon: IconButton(
                           icon: Icon(
-                            isObscure ? Icons.visibility : Icons.visibility_off,
+                            isConfirmPasswordObscure
+                                ? Icons.visibility
+                                : Icons.visibility_off,
                             color: Colors.grey,
                           ),
                           onPressed: () {
                             setState(() {
-                              isObscure = !isObscure;
+                              isConfirmPasswordObscure =
+                                  !isConfirmPasswordObscure;
                             });
                           },
                         ),
@@ -217,7 +209,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: _register,
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('Registration successful'),
+                                backgroundColor: Colors.green,
+                              ),
+                            );
+                            Navigator.pushNamed(
+                                context, AppRoute.loginPageRoute);
+                          }
+                        },
                         child: Text(
                           'Register',
                           style: TextStyle(
