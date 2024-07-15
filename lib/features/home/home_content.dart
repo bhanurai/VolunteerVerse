@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/auth/login_page.dart';
 import 'package:volunteer_verse/features/home/category_screens/category_section.dart';
 import 'package:volunteer_verse/features/home/donation/donation_card.dart';
+import 'package:volunteer_verse/features/home/donation/donation_card2.dart';
 import 'package:volunteer_verse/features/home/home_page.dart';
 import 'package:volunteer_verse/features/home/menu/chat/chat_list_screen.dart';
 import 'package:volunteer_verse/features/home/menu/events.dart';
@@ -208,9 +209,26 @@ class _HomeContentState extends State<HomeContent> {
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: DonationCard(),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SizedBox(
+                      width: 300,
+                      child: DonationCard(),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: SizedBox(
+                      width: 300,
+                      child: DonationCard2(),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

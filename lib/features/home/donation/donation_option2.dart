@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/home/donation/khalti/khalti_page.dart';
 
-class DonationOption extends StatefulWidget {
+class DonationOption2 extends StatefulWidget {
   @override
-  _DonationOptionState createState() => _DonationOptionState();
+  _DonationOption2State createState() => _DonationOption2State();
 }
 
-class _DonationOptionState extends State<DonationOption> {
+class _DonationOption2State extends State<DonationOption2> {
   TextEditingController _controller = TextEditingController();
   int selectedAmount = 0;
 
@@ -40,7 +40,7 @@ class _DonationOptionState extends State<DonationOption> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: <Widget>[
-              Image.asset('assets/images/learn.jpg', height: 180),
+              Image.asset('assets/images/homeless.jpg', height: 180),
               SizedBox(height: 20),
               Container(
                 decoration: BoxDecoration(
