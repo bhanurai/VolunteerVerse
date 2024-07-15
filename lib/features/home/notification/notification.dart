@@ -8,12 +8,6 @@ class NotificationScreen extends StatefulWidget {
 class _NotificationScreenState extends State<NotificationScreen> {
   final List<Map<String, String>> notifications = [
     {
-      'title': 'Account Setup Successful!',
-      'subtitle': 'Your account has been created!',
-      'date': 'July 14, 2024',
-      'icon': 'assets/images/logo.png',
-    },
-    {
       'title': 'Bagmati Cleaning Event',
       'subtitle':
           'Event is going to happen at July 18th so don\'t miss it out.',
