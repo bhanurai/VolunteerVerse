@@ -11,14 +11,14 @@ class _NotificationScreenState extends State<NotificationScreen> {
       'title': 'Bagmati Cleaning Event',
       'subtitle':
           'Event is going to happen at July 18th so don\'t miss it out.',
-      'date': 'July 18, 2024',
+      'date': 'July 24, 2024',
       'icon': 'assets/images/logo.png',
     },
     {
       'title': 'Tudhikhel Cleanup',
       'subtitle':
           'Event is going to happen at July 24th so don\'t miss it out.',
-      'date': 'July 24, 2024',
+      'date': 'July 28, 2024',
       'icon': 'assets/images/logo.png',
     },
   ];
