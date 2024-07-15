@@ -23,12 +23,12 @@ class _EventsPageState extends State<EventsPage> {
 
   List<Event> _events = [
     Event(
-      date: DateTime(2024, 7, 18),
+      date: DateTime(2024, 7, 24),
       title: "Bagmati River Cleanup",
       description: "Meet up at Kumari Club, Kathmandu at 7:00 AM",
     ),
     Event(
-      date: DateTime(2024, 7, 24),
+      date: DateTime(2024, 7, 28),
       title: "Tudhikhel Cleanup",
       description: "Meet up at tudhikhel ground, Kathmandu at 6:00 AM",
     ),
