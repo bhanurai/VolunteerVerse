@@ -11,7 +11,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final String khaltiPublicKey =
-      "test_public_key_101654dbf6c14f8eabe631ea390264dd";
+      "test_public_key_ff9cb5d3e56943b69ec03294330467a9";
 
   @override
   Widget build(BuildContext context) {
