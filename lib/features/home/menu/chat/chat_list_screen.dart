@@ -8,11 +8,9 @@ class ChatListScreen extends StatefulWidget {
 
 class _ChatListScreenState extends State<ChatListScreen> {
   final List<String> _chatNames = [
-    'Blood Donation Group',
-    'Environmental Club',
-    'Neighborhood Watch',
-    'Book Club',
-    'Tech Enthusiasts'
+    'Bagmati Cleanup',
+    'Tudhikhel Cleanup',
+  
   ];
   List<String> _filteredChatNames = [];
 

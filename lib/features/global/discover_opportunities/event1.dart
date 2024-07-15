@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/map/map2.dart';
 
 class TudhikhelCleanupApp extends StatelessWidget {
   @override
@@ -20,6 +21,14 @@ class CleanupPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Tudhikhel Cleanup'),
+        leading: BackButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => CleanupPage()),
+            );
+          },
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -63,10 +72,9 @@ class CleanupPage extends StatelessWidget {
             textAlign: TextAlign.justify,
           ),
           SizedBox(height: 16.0),
-          Image.network(
-            'https://example.com/map_image.jpg', 
+          Container(
             height: 200,
-            fit: BoxFit.cover,
+            child: MapScreen2(),
           ),
         ],
       ),

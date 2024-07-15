@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteer_verse/features/map/map.dart';
 
 class BagmatiCleanupApp extends StatelessWidget {
   @override
@@ -20,6 +21,11 @@ class CleanupPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Bagmati River Cleanup'),
+        leading: BackButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(16.0),
@@ -63,10 +69,9 @@ class CleanupPage extends StatelessWidget {
             textAlign: TextAlign.justify,
           ),
           SizedBox(height: 16.0),
-          Image.network(
-            'https://example.com/map_image.jpg',
+          Container(
             height: 200,
-            fit: BoxFit.cover,
+            child: MapScreen(), 
           ),
         ],
       ),

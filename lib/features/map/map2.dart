@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
-class MapScreen extends StatelessWidget {
+class MapScreen2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +10,7 @@ class MapScreen extends StatelessWidget {
         children: [
           FlutterMap(
             options: MapOptions(
-              center: LatLng(27.01628880439592, 85.43103336838998),
+              center: LatLng(27.703383376818785, 85.31480730353319),
               zoom: 16.0,
             ),
             children: [

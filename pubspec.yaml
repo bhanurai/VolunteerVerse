@@ -48,7 +48,7 @@ dependencies:
   curved_navigation_bar: ^1.0.6
   carousel_slider: ^4.2.1
 
-  flutter_map: ^7.0.2
+  flutter_map: ^6.0.0
   latlong2: ^0.9.1
 
   percent_indicator: ^4.2.3
