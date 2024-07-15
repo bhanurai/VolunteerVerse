@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:volunteer_verse/features/global/featured_organization/detail_page.dart';
+import 'package:volunteer_verse/features/profile/edit_profile.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -20,6 +21,19 @@ class _ProfilePageState extends State<ProfilePage> {
             color: Colors.white,
           ),
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.edit_outlined),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditProfilePage(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -41,12 +55,12 @@ class _ProfilePageState extends State<ProfilePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star, color: Color.fromRGBO(97, 124, 181, 1)),
-                Icon(Icons.star_border),
-                Text(' 4.0', style: TextStyle(fontSize: 18)),
+                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
+                Icon(Icons.star_border, color: Color.fromRGBO(97, 124, 181, 1)),
+                Text('', style: TextStyle(fontSize: 18)),
               ],
             ),
             SizedBox(height: 20),
@@ -63,24 +77,43 @@ class _ProfilePageState extends State<ProfilePage> {
                     children: [
                       Icon(Icons.calendar_today),
                       SizedBox(height: 8),
-                      Text('Serving Date'),
-                      Text('269'),
+                      Text(
+                        'Serving Date',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'NA',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                   Column(
                     children: [
                       Icon(Icons.access_time),
                       SizedBox(height: 8),
-                      Text('Hours'),
-                      Text('594.4'),
+                      Text(
+                        'Hours',
+                        style: TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'NA',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                   Column(
                     children: [
                       Icon(Icons.monetization_on),
                       SizedBox(height: 8),
-                      Text('Impact'),
-                      Text('Rs. 14k'),
+                      Text('Impact',
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.bold)),
+                      Text(
+                        'NA',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 ],
@@ -151,7 +184,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-            // Add more widgets for the rest of the page content here.
           ],
         ),
       ),
